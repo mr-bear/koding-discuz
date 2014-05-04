@@ -1,0 +1,1 @@
+var postimg_type = new Array();postimg_type["hrline"]=["line6.png","0.gif","1.gif","2.gif","5.gif","line7.png","line8.png","line5.png","4.gif","line4.png","line1.png","line3.png","line9.png","3.gif","line2.png"];postimg_type["postbg"]=["bg5.png","bg9.png","bg8.png","0.gif","bg4.png","bg7.png","bg2.png","3.jpg","2.jpg","bg3.png","bg10.png","bg1.png","bg6.png","1.jpg"];
