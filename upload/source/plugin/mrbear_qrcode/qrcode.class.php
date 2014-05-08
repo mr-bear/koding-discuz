@@ -3,11 +3,11 @@ if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
 
-class plugin_qrcode{
+class plugin_mrbear_qrcode{
 
 }
 
-class plugin_qrcode_forum extends plugin_qrcode {
+class plugin_mrbear_qrcode_forum extends plugin_mrbear_qrcode {
 
 	const WIDTH  = 100;
 	const HEIGHT = 100;
@@ -15,7 +15,7 @@ class plugin_qrcode_forum extends plugin_qrcode {
 	const LEVEL  = 'L';
 
 	/**
-	 * 嵌入点
+	 * viewthread_title_extra
 	 * @return [type] [description]
 	 */
 	function viewthread_title_extra(){
@@ -42,12 +42,12 @@ class plugin_qrcode_forum extends plugin_qrcode {
 	}
 
 	/**
-	 * 使用google api生成二维码
-	 * $chl参数：二维码内容
-	 * $width参数：生成二维码的尺寸
-	 * $height参数：生成二维码的尺寸
-	 * $level参数：可选参数，纠错等级，L-(默认)可以识别已损失7%的数据；M-可以识别已损失15%的数据；Q-可以识别已损失25%的数据；H-可以识别已损失30%的数据;
-	 * $margin 是指生成的二维码离边框的距离;
+	 * Generate qrCode by Google Api
+	 * @param $chl [qrcode content]
+	 * @param $width [img width]
+	 * @param $height [img height]
+	 * @param $level [errorCorrectionLevel，L-(default)；M；Q；H
+	 * @param $margin 
 	*/
 	function generateQRfromGoogle($chl, $width = '100', $height= '100', $level = 'L', $margin= '0') {
 		$chl = urlencode($chl);
@@ -56,7 +56,7 @@ class plugin_qrcode_forum extends plugin_qrcode {
 	}
 
 	/**
-	 * 检查传入等级合法性
+	 * check legitimate of params
 	 */
 	static function checkLevel($level){
 		if (in_array(strtoupper($level), array('L','M','Q','H'))) {
