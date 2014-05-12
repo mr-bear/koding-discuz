@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <root>
 	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
-	<item id="Version"><![CDATA[X3.1]]></item>
-	<item id="Time"><![CDATA[2014-05-08 17:21]]></item>
+	<item id="version"><![CDATA[X2.5,X3,X3.1]]></item>
+	<item id="Time"><![CDATA[2014-05-11 22:09]]></item>
 	<item id="From"><![CDATA[Discuz! Board (http://jsxiong110.kd.io/discuz/upload/)]]></item>
 	<item id="Data">
 		<item id="plugin">
@@ -31,7 +31,7 @@
 				</item>
 			</item>
 		</item>
-		<item id="version"><![CDATA[X3.1]]></item>
+		<item id="version"><![CDATA[X2.5,X3,X3.1]]></item>
 		<item id="var">
 			<item id="0">
 				<item id="displayorder"><![CDATA[0]]></item>
@@ -68,6 +68,22 @@
 				<item id="type"><![CDATA[number]]></item>
 				<item id="value"><![CDATA[0]]></item>
 				<item id="extra"><![CDATA[]]></item>
+			</item>
+		</item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="qrcode_english"><![CDATA[ÊÖ»ú¶þÎ¬Âë]]></item>
+			</item>
+			<item id="templatelang">
+				<item id="english"><![CDATA[chinese]]></item>
+			</item>
+			<item id="installlang">
+				<item id="english"><![CDATA[chinese]]></item>
+			</item>
+			<item id="systemlang">
+				<item id="file">
+					<item id="english"><![CDATA[chinese]]></item>
+				</item>
 			</item>
 		</item>
 	</item>
