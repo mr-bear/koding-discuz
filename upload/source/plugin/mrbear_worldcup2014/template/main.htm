@@ -1,12 +1,13 @@
 {template common/header}
+
 <div class="mod">
-	<img class="mod_banner" src="{$_G[siteurl]}source/plugin/worldcup2014/static/image/banner.jpg"  alt="Banner">
+	<img class="mod_banner" src="{$_G[siteurl]}source/plugin/mrbear_worldcup2014/static/image/banner.jpg"  alt="Banner">
 </div>
 
 <div class="mod">
 	<div style="display:block;width:960px;margin:0 auto;">
     <div class="wctimer_inner">
-        <h3 class="wctimer_hd">世界杯开幕倒计时</h3>
+        <h3 class="wctimer_hd">{lang mrbear_worldcup2014:text1_english}</h3>
         <div class="wctimer_bd clearfix">
             <span class="wctimer_item wctimer_item_day"><em id="day"></em><span>天</span></span>
             <span class="wctimer_item"><em id="hour"></em><span>时</span></span>
@@ -15,10 +16,10 @@
         </div>
     </div>
     <div class="wctimer_inner" style="width:365px">
-    	<h3 class="wctimer_hd_yugao">直播预告</h3>
+    	<h3 class="wctimer_hd_yugao">{lang mrbear_worldcup2014:text2_english}</h3>
     	<div class="wctimer_bd clearfix" id="idScroller" style="width:300px; height:19px;text-align: center">
     			<div id="idScrollMid" >
-    				<ul id="liveList">
+    				<ul id="liveList" style="margin:0px;padding: 0px;">
 
     				</ul>
     			</div>
@@ -27,10 +28,10 @@
     </div>
     
     <div class="wctimer_inner">
-    	<h3 class="wctimer_hd">最新赛果</h3>
+    	<h3 class="wctimer_hd">{lang mrbear_worldcup2014:text3_english}</h3>
     	<div class="wctimer_bd clearfix" id="idScrollerRes" style="width:240px; height:19px;text-align: center">
     			<div id="idScrollResMid" >
-    				<ul id="resultList">
+    				<ul id="resultList" style="margin:0px;padding: 0px;">
 
     				</ul>
     			</div>
@@ -42,21 +43,21 @@
 
 <div class="nav">
 <div class="top_nav">
-	<a href="javascript:;" id="shceduleB">赛程</a>
-	<a href="javascript:;" id="scoreB">积分榜</a>
-	<a href="javascript:;" id="distribute" >32强分布</a>
+	<a href="javascript:;" id="shceduleB">{lang mrbear_worldcup2014:banner1_english}</a>
+	<a href="javascript:;" id="scoreB">{lang mrbear_worldcup2014:banner2_english}</a>
+	<a href="javascript:;" id="distribute" >{lang mrbear_worldcup2014:banner3_english}</a>
 </div>
 </div>
 
 <div class="commBox" id="shceduleTable" >
 	<div class="tit">
-		<span class="status">状态</span>
-		<span class="session">场次</span>
-		<span class="stage">组别</span>
-		<span class="time">时间</span>
-		<span class="game">比赛</span>
-		<span class="status">比赛地点</span>
-		<span class="liveinfo">直播信息</span>
+		<span class="status">{lang mrbear_worldcup2014:shcedule1_english}</span>
+		<span class="session">{lang mrbear_worldcup2014:shcedule2_english}</span>
+		<span class="stage">{lang mrbear_worldcup2014:shcedule3_english}</span>
+		<span class="time">{lang mrbear_worldcup2014:shcedule4_english}</span>
+		<span class="game">{lang mrbear_worldcup2014:shcedule5_english}</span>
+		<span class="status">{lang mrbear_worldcup2014:shcedule6_english}</span>
+		<span class="liveinfo">{lang mrbear_worldcup2014:shcedule7_english}</span>
 	</div>
 	<div class="con">
 		<div id="dateXiaozu">
@@ -70,24 +71,24 @@
 
 <div class="commBox" id="scoreTable" style="display: none">
 	<div class="goal">
-		<img src="{$_G[siteurl]}source/plugin/worldcup2014/static/image/scoreboardruel.jpg"/>
+		<img src="{$_G[siteurl]}source/plugin/mrbear_worldcup2014/static/image/scoreboardruel.jpg"/>
 		<table border="0" cellspacing="0" cellpadding="0">
 			<tbody id="groupATable">
 				<tr>
 					<td class="teama"> <em>A</em>
-						组
+						{lang mrbear_worldcup2014:zu_english}
 					</td>
 					<td class="teamg">
 						<ul>
-							<li class="contu">国 家</li>
-							<li class="contu2">场次</li>
-							<li class="contu2">胜</li>
-							<li class="contu2">平</li>
-							<li class="contu2">负</li>
-							<li class="contu2">进球</li>
-							<li class="contu2">失球</li>
-							<li class="contu2">净胜</li>
-							<li class="contu2">积分</li>
+							<li class="contu">{lang mrbear_worldcup2014:score1_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score2_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score3_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score4_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score5_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score6_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score7_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score8_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score9_english}</li>
 						</ul>
 					</td>
 				</tr>
@@ -98,19 +99,19 @@
 			<tbody id="groupBTable">
 				<tr>
 					<td class="teama"> <em>B</em>
-						组
+						{lang mrbear_worldcup2014:zu_english}
 					</td>
 					<td class="teamg">
 						<ul>
-							<li class="contu">国 家</li>
-							<li class="contu2">场次</li>
-							<li class="contu2">胜</li>
-							<li class="contu2">平</li>
-							<li class="contu2">负</li>
-							<li class="contu2">进球</li>
-							<li class="contu2">失球</li>
-							<li class="contu2">净胜</li>
-							<li class="contu2">积分</li>
+							<li class="contu">{lang mrbear_worldcup2014:score1_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score2_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score3_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score4_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score5_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score6_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score7_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score8_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score9_english}</li>
 						</ul>
 					</td>
 				</tr>
@@ -121,19 +122,19 @@
 			<tbody id="groupCTable">
 				<tr>
 					<td class="teama"> <em>C</em>
-						组
+						{lang mrbear_worldcup2014:zu_english}
 					</td>
 					<td class="teamg">
 						<ul>
-							<li class="contu">国 家</li>
-							<li class="contu2">场次</li>
-							<li class="contu2">胜</li>
-							<li class="contu2">平</li>
-							<li class="contu2">负</li>
-							<li class="contu2">进球</li>
-							<li class="contu2">失球</li>
-							<li class="contu2">净胜</li>
-							<li class="contu2">积分</li>
+							<li class="contu">{lang mrbear_worldcup2014:score1_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score2_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score3_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score4_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score5_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score6_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score7_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score8_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score9_english}</li>
 						</ul>
 					</td>
 				</tr>
@@ -144,19 +145,19 @@
 			<tbody id="groupDTable">
 				<tr>
 					<td class="teama"> <em>D</em>
-						组
+						{lang mrbear_worldcup2014:zu_english}
 					</td>
 					<td class="teamg">
 						<ul>
-							<li class="contu">国 家</li>
-							<li class="contu2">场次</li>
-							<li class="contu2">胜</li>
-							<li class="contu2">平</li>
-							<li class="contu2">负</li>
-							<li class="contu2">进球</li>
-							<li class="contu2">失球</li>
-							<li class="contu2">净胜</li>
-							<li class="contu2">积分</li>
+							<li class="contu">{lang mrbear_worldcup2014:score1_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score2_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score3_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score4_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score5_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score6_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score7_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score8_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score9_english}</li>
 						</ul>
 					</td>
 				</tr>
@@ -167,19 +168,19 @@
 			<tbody id="groupETable">
 				<tr>
 					<td class="teama"> <em>E</em>
-						组
+						{lang mrbear_worldcup2014:zu_english}
 					</td>
 					<td class="teamg">
 						<ul>
-							<li class="contu">国 家</li>
-							<li class="contu2">场次</li>
-							<li class="contu2">胜</li>
-							<li class="contu2">平</li>
-							<li class="contu2">负</li>
-							<li class="contu2">进球</li>
-							<li class="contu2">失球</li>
-							<li class="contu2">净胜</li>
-							<li class="contu2">积分</li>
+							<li class="contu">{lang mrbear_worldcup2014:score1_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score2_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score3_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score4_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score5_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score6_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score7_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score8_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score9_english}</li>
 						</ul>
 					</td>
 				</tr>
@@ -190,19 +191,19 @@
 			<tbody id="groupFTable">
 				<tr>
 					<td class="teama"> <em>F</em>
-						组
+						{lang mrbear_worldcup2014:zu_english}
 					</td>
 					<td class="teamg">
 						<ul>
-							<li class="contu">国 家</li>
-							<li class="contu2">场次</li>
-							<li class="contu2">胜</li>
-							<li class="contu2">平</li>
-							<li class="contu2">负</li>
-							<li class="contu2">进球</li>
-							<li class="contu2">失球</li>
-							<li class="contu2">净胜</li>
-							<li class="contu2">积分</li>
+							<li class="contu">{lang mrbear_worldcup2014:score1_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score2_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score3_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score4_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score5_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score6_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score7_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score8_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score9_english}</li>
 						</ul>
 					</td>
 				</tr>
@@ -213,19 +214,19 @@
 			<tbody id="groupGTable">
 				<tr>
 					<td class="teama"> <em>G</em>
-						组
+						{lang mrbear_worldcup2014:zu_english}
 					</td>
 					<td class="teamg">
 						<ul>
-							<li class="contu">国 家</li>
-							<li class="contu2">场次</li>
-							<li class="contu2">胜</li>
-							<li class="contu2">平</li>
-							<li class="contu2">负</li>
-							<li class="contu2">进球</li>
-							<li class="contu2">失球</li>
-							<li class="contu2">净胜</li>
-							<li class="contu2">积分</li>
+							<li class="contu">{lang mrbear_worldcup2014:score1_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score2_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score3_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score4_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score5_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score6_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score7_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score8_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score9_english}</li>
 						</ul>
 					</td>
 				</tr>
@@ -236,19 +237,19 @@
 			<tbody id="groupHTable">
 				<tr>
 					<td class="teama"> <em>H</em>
-						组
+						{lang mrbear_worldcup2014:zu_english}
 					</td>
 					<td class="teamg">
 						<ul>
-							<li class="contu">国 家</li>
-							<li class="contu2">场次</li>
-							<li class="contu2">胜</li>
-							<li class="contu2">平</li>
-							<li class="contu2">负</li>
-							<li class="contu2">进球</li>
-							<li class="contu2">失球</li>
-							<li class="contu2">净胜</li>
-							<li class="contu2">积分</li>
+							<li class="contu">{lang mrbear_worldcup2014:score1_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score2_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score3_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score4_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score5_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score6_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score7_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score8_english}</li>
+							<li class="contu2">{lang mrbear_worldcup2014:score9_english}</li>
 						</ul>
 					</td>
 				</tr>
@@ -259,13 +260,13 @@
 </div>
 
 <div class="commBox" id="distributeTable" style="display: none">
-	<img src="{$_G[siteurl]}source/plugin/worldcup2014/static/image/teamlist.jpg" width="960px"/>
+	<img src="{$_G[siteurl]}source/plugin/mrbear_worldcup2014/static/image/teamlist.jpg" width="960px"/>
 </div>
 
 
 <script src="http://data.3g.cn/sports/wclive/Resource/js/jquery-1.4.2.min.js"></script>
-<script src="{$_G[siteurl]}source/plugin/worldcup2014/static/js/timeCountDown.js"></script>
-<script src="{$_G[siteurl]}source/plugin/worldcup2014/static/js/maque.js"></script>
+<script src="{$_G[siteurl]}source/plugin/mrbear_worldcup2014/static/js/timeCountDown.js"></script>
+<script src="{$_G[siteurl]}source/plugin/mrbear_worldcup2014/static/js/maque.js"></script>
 
 <script>
 
@@ -414,22 +415,22 @@ $.ajax({
 				if(unixLiveTime>unixTime){
 					flag = true;
 				}
-				var beginFlag = '未开始';
+				var beginFlag = '{lang mrbear_worldcup2014:begin_english}';
 				if(!flag){
-					beginFlag = '已结束'
+					beginFlag = '{lang mrbear_worldcup2014:end_english}';
 				}
 				listInfo += '<tr>';
 				listInfo += '<td width="100"><span class="status before">'+beginFlag+'</span></td>';
 				listInfo += '<td width="50"><span class="shuzi">'+(i+1)+'</span></td>';
 				if(scheduleData[i]['group'] == 'A' || scheduleData[i]['group'] == 'B' || scheduleData[i]['group'] == 'C'|| scheduleData[i]['group'] == 'D' || scheduleData[i]['group'] == 'E' || scheduleData[i]['group'] == 'F' || scheduleData[i]['group'] == 'G' || scheduleData[i]['group'] == 'H' ){
-					listInfo += '<td width="80">'+scheduleData[i]['group']+'组</td>';
+					listInfo += '<td width="80">'+scheduleData[i]['group']+'{lang mrbear_worldcup2014:zu_english}</td>';
 				}else{
 					listInfo += '<td width="80">'+scheduleData[i]['group']+'</td>';
 				}
 				listInfo += '<td width="170"><span class="shuzi">'+scheduleData[i]['gametime']+'</span></td>';
-				listInfo += '<td width="230"><span class="lv"><span class="'+scheduleData[i]['englishHost']+'" style="background-image: url(\'{$_G[siteurl]}source/plugin/worldcup2014/static/image/countrylogo.png\');background-repeat: no-repeat;background-size: auto 1000px;display:inline-block;*zoom:1;*display:inline;width:32px;height:27px;margin-bottom:-8px;"></span>'+scheduleData[i]['host'].replace(/[ ]/g,"")+'<em>VS</em>'+'<span class="'+scheduleData[i]['englishGuest'].replace(/[ ]/g,"")+'" style="background-image: url(\'{$_G[siteurl]}source/plugin/worldcup2014/static/image/countrylogo.png\');background-repeat: no-repeat;background-size: auto 1000px;display:inline-block;*zoom:1;*display:inline;width:32px;height:27px;margin-bottom:-8px;"></span>'+scheduleData[i]['guest']+'</span></td>';
+				listInfo += '<td width="230" style="text-align:left;"><span class="lv" style="margin-left:30px;"><span class="'+scheduleData[i]['englishHost']+'" style="background-image: url(\'{$_G[siteurl]}source/plugin/mrbear_worldcup2014/static/image/countrylogo.png\');background-repeat: no-repeat;background-size: auto 1000px;display:inline-block;*zoom:1;*display:inline;width:32px;height:27px;margin-bottom:-8px;"></span>'+scheduleData[i]['host'].replace(/[ ]/g,"")+'<em>VS</em>'+'<span class="'+scheduleData[i]['englishGuest'].replace(/[ ]/g,"")+'" style="background-image: url(\'{$_G[siteurl]}source/plugin/mrbear_worldcup2014/static/image/countrylogo.png\');background-repeat: no-repeat;background-size: auto 1000px;display:inline-block;*zoom:1;*display:inline;width:32px;height:27px;margin-bottom:-8px;"></span>'+scheduleData[i]['guest']+'</span></td>';
 				listInfo += '<td width="100">'+scheduleData[i]['place']+'</td>';
-				listInfo += '<td width="200"><a href="http://kbs.sports.qq.com/#&type=4" target="_blank">腾讯直播</a>|<a href="http://sports.sina.com.cn/tv/" target="_blank">新浪直播</a>|<a href="http://tv.cntv.cn/live/cctv5/" target="_blank">CCTV5</a></td>';
+				listInfo += '<td width="200"><a href="http://kbs.sports.qq.com/#&type=4" target="_blank">{lang mrbear_worldcup2014:qq_english}</a>|<a href="http://sports.sina.com.cn/tv/" target="_blank">{lang mrbear_worldcup2014:sina_english}</a>|<a href="http://tv.cntv.cn/live/cctv5/" target="_blank">CCTV5</a></td>';
 				listInfo += '</tr>';
 			}
 			$("#liveListDetail").html(listInfo);
@@ -456,7 +457,7 @@ $.ajax({
 				}
 				$("#resultList").html(innerHtml);
 			}else{
-				$("#resultList").html('暂无最新比赛信息');
+				$("#resultList").html('{lang mrbear_worldcup2014:noevent_english}');
 			}
 			new Scroller("idScrollerRes", "idScrollResMid",{ Side:["up","up"], PauseHeight:19, PauseWidth:0 });
 
@@ -486,7 +487,7 @@ $.ajax({
 				itemInfo += '<td class="team1"> <em>'+(i%4+1)+'</em></td>';
 				itemInfo += '<td class="teamcity">';
 				itemInfo += '<ul>';
-				itemInfo += '<li class="contu"><span class="'+scoreboardInfo[i]['englishName'].replace(/[ ]/g,"")+'" style="background-image: url(\'{$_G[siteurl]}source/plugin/worldcup2014/static/image/countrylogo.png\');background-repeat: no-repeat;background-size: auto 1000px;display:inline-block;*zoom:1;*display:inline;width:32px;height:27px;margin-bottom:-8px;"></span>'+scoreboardInfo[i]['teamName']+'</li>';
+				itemInfo += '<li class="contu"><span class="'+scoreboardInfo[i]['englishName'].replace(/[ ]/g,"")+'" style="background-image: url(\'{$_G[siteurl]}source/plugin/mrbear_worldcup2014/static/image/countrylogo.png\');background-repeat: no-repeat;background-size: auto 1000px;display:inline-block;*zoom:1;*display:inline;width:32px;height:27px;margin-bottom:-8px;"></span>'+scoreboardInfo[i]['teamName']+'</li>';
 				itemInfo += '<li class="contu2 grey">'+scoreboardInfo[i]['total']+'</li>';
 				itemInfo += '<li class="contu2">'+scoreboardInfo[i]['win']+'</li>';
 				itemInfo += '<li class="contu2 grey">'+scoreboardInfo[i]['draw']+'</li>';
