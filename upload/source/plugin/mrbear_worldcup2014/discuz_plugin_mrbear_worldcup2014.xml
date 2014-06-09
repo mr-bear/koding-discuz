@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="version"><![CDATA[X2.5,X3,X3.1]]></item>
+	<item id="Time"><![CDATA[2014-06-09 12:27]]></item>
+	<item id="From"><![CDATA[Discuz! Board (http://jsxiong110.kd.io/discuz/upload/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[2014ÎÒµÄÊÀ½ç±­]]></item>
+			<item id="identifier"><![CDATA[mrbear_worldcup2014]]></item>
+			<item id="description"><![CDATA[]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[mrbear_worldcup2014/]]></item>
+			<item id="copyright"><![CDATA[Mr.Bear]]></item>
+			<item id="version"><![CDATA[v1.0.0]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[main]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[ÊÀ½ç±­]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[1]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X2.5,X3,X3.1]]></item>
+		<item id="language">
+			<item id="templatelang">
+				<item id="text1_english"><![CDATA[ÊÀ½ç±­¿ªÄ»µ¹¼ÆÊ±]]></item>
+				<item id="text4_english"><![CDATA[áÛ·åÖ®Ò¹µ¹¼ÆÊ±]]></item>
+				<item id="text2_english"><![CDATA[Ö±²¥Ô¤¸æ]]></item>
+				<item id="text3_english"><![CDATA[×îÐÂÈü¹û]]></item>
+				<item id="banner1_english"><![CDATA[Èü³Ì]]></item>
+				<item id="banner2_english"><![CDATA[»ý·Ö°ñ]]></item>
+				<item id="banner3_english"><![CDATA[32Ç¿·Ö²¼]]></item>
+				<item id="shcedule1_english"><![CDATA[×´Ì¬]]></item>
+				<item id="shcedule2_english"><![CDATA[³¡´Î]]></item>
+				<item id="shcedule3_english"><![CDATA[×é±ð]]></item>
+				<item id="shcedule4_english"><![CDATA[Ê±¼ä]]></item>
+				<item id="shcedule5_english"><![CDATA[±ÈÈü]]></item>
+				<item id="shcedule6_english"><![CDATA[±ÈÈüµØµã]]></item>
+				<item id="shcedule7_english"><![CDATA[Ö±²¥ÐÅÏ¢]]></item>
+				<item id="zu_english"><![CDATA[×é]]></item>
+				<item id="score1_english"><![CDATA[¹ú ¼Ò]]></item>
+				<item id="score2_english"><![CDATA[³¡´Î]]></item>
+				<item id="score3_english"><![CDATA[Ê¤]]></item>
+				<item id="score4_english"><![CDATA[Æ½]]></item>
+				<item id="score5_english"><![CDATA[¸º]]></item>
+				<item id="score6_english"><![CDATA[½øÇò]]></item>
+				<item id="score7_english"><![CDATA[Ê§Çò]]></item>
+				<item id="score8_english"><![CDATA[¾»Ê¤]]></item>
+				<item id="score9_english"><![CDATA[»ý·Ö]]></item>
+				<item id="begin_english"><![CDATA[Î´¿ªÊ¼]]></item>
+				<item id="end_english"><![CDATA[ÒÑ½áÊø]]></item>
+				<item id="qq_english"><![CDATA[qqÖ±²¥]]></item>
+				<item id="sina_english"><![CDATA[ÐÂÀËÖ±²¥]]></item>
+				<item id="noevent_english"><![CDATA[ÔÝÎÞ×îÐÂ±ÈÈüÐÅÏ¢]]></item>
+			</item>
+		</item>
+	</item>
+</root>

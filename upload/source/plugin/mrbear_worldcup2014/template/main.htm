@@ -7,7 +7,7 @@
 <div class="mod">
 	<div style="display:block;width:960px;margin:0 auto;">
     <div class="wctimer_inner">
-        <h3 class="wctimer_hd">{lang mrbear_worldcup2014:text1_english}</h3>
+        <h3 class="wctimer_hd" id="timeText">{lang mrbear_worldcup2014:text1_english}</h3>
         <div class="wctimer_bd clearfix">
             <span class="wctimer_item wctimer_item_day"><em id="day"></em><span>天</span></span>
             <span class="wctimer_item"><em id="hour"></em><span>时</span></span>
@@ -519,7 +519,28 @@ var zxx = {
     }
   }
 };
-fnTimeCountDown(zxx.futureDate, zxx.obj());
+
+var zxx1 = {
+    $: function(id){
+        return document.getElementById(id);
+    },
+    futureDate: Date.UTC(2014,06,14,3,0),
+    obj: function(){
+        return {
+            sec: zxx1.$("sec"),
+            mini: zxx1.$("mini"),
+            hour: zxx1.$("hour"),
+            day: zxx1.$("day")
+        }
+    }
+};
+if(new Date().getTime() < 1405278000000){
+    fnTimeCountDown(zxx.futureDate, zxx.obj());
+}else{
+    $("#timeText").html('{lang mrbear_worldcup2014:text4_english}')
+    fnTimeCountDown(zxx1.futureDate, zxx1.obj());
+}
+
 
 
 

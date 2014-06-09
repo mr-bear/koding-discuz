@@ -2,6 +2,7 @@
 
 $templatelang['mrbear_worldcup2014'] = array(
 	'text1_english' => '世界杯开幕倒计时',
+    'text4_english' => '巅峰之夜倒计时',
 	'text2_english' => '直播预告',
 	'text3_english' => '最新赛果',
 	'banner1_english' => '赛程',
