@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <root>
 	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
-	<item id="version"><![CDATA[X2.5,X3,X3.1]]></item>
-	<item id="Time"><![CDATA[2014-06-09 12:27]]></item>
+	<item id="version"><![CDATA[X2.5,X3,X3.1,X3.2]]></item>
+	<item id="Time"><![CDATA[2014-06-14 11:49]]></item>
 	<item id="From"><![CDATA[Discuz! Board (http://jsxiong110.kd.io/discuz/upload/)]]></item>
 	<item id="Data">
 		<item id="plugin">
@@ -31,7 +31,7 @@
 				</item>
 			</item>
 		</item>
-		<item id="version"><![CDATA[X2.5,X3,X3.1]]></item>
+		<item id="version"><![CDATA[X2.5,X3,X3.1,X3.2]]></item>
 		<item id="language">
 			<item id="templatelang">
 				<item id="text1_english"><![CDATA[ÊÀ½ç±­¿ªÄ»µ¹¼ÆÊ±]]></item>
@@ -63,6 +63,10 @@
 				<item id="qq_english"><![CDATA[qqÖ±²¥]]></item>
 				<item id="sina_english"><![CDATA[ÐÂÀËÖ±²¥]]></item>
 				<item id="noevent_english"><![CDATA[ÔÝÎÞ×îÐÂ±ÈÈüÐÅÏ¢]]></item>
+				<item id="day"><![CDATA[Ìì]]></item>
+				<item id="hour"><![CDATA[Ê±]]></item>
+				<item id="mini"><![CDATA[·Ö]]></item>
+				<item id="sec"><![CDATA[Ãë]]></item>
 			</item>
 		</item>
 	</item>

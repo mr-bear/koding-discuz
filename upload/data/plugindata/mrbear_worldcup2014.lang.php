@@ -30,6 +30,10 @@ $templatelang['mrbear_worldcup2014'] = array(
 	'qq_english' => 'qq直播',
 	'sina_english' => '新浪直播',
 	'noevent_english' => '暂无最新比赛信息',
+	'day' => '天',
+	'hour' => '时',
+	'mini' => '分',
+	'sec' => '秒',
 
 );
 

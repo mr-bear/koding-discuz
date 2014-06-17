@@ -1,0 +1,33 @@
+
+.mrbear_fl,.layout .mrbear_fl,.chief{float:left;display:inline}
+.mrbear_fr,.layout .mrbear_fr,.extra{float:right;display:inline}
+.icons{background:url(http://mat1.gtimg.com/2014/index/img/icons_v1.png) no-repeat;}
+.mod_top_sc{position:relative;width:1150px;height:103px;overflow:hidden;zoom:1;z-index:2;}
+.mod_top_sc .scroll_bar,
+.mod_top_sc .scroll_btn,
+.mod_top_sc .scroll_bar i{height:8px;position:absolute;left:0;bottom:0;background:url(http://mat1.gtimg.com/2014/index/img/scroll_bar.png) no-repeat;}
+.mod_top_sc .scroll_btn{background-repeat:repeat-x;background-position:0 -20px;}
+.mod_top_sc .scroll_bar{background-repeat:repeat-x;background-position:0 0;}
+.mod_top_sc .scroll_bar i{left:50%;top:1px;width:18px;height:6px;margin-left:-9px;background-position:0 -40px;}
+.sc_list{position:absolute;left:0;top:0;width:9999em;height:103px;}
+.sc_list .item{float:left;position:relative;width:147px;height:78px;padding-right:20px;overflow:hidden;}
+.sc_list .item .status{position:relative;width:46px;height:22px;text-align:center;color:#E5FFED;}
+.sc_list .item .status i.icons{position:absolute;right:-3px;top:0;width:3px;height:3px;}
+.sc_list .item .status_1{background-color:#266FE5;}
+.sc_list .item .status_2{background-color:#F94D00;}
+.sc_list .item .status_3{background-color:#056951;}
+.sc_list .item .status_1 i.icons{background-position:-60px -30px;}
+.sc_list .item .status_2 i.icons{background-position:-70px -30px;}
+.sc_list .item .status_3 i.icons{background-position:-80px -30px;}
+.sc_list .item .hd{height:22px;line-height:22px;background-color:#4BB86D;border-bottom:1px solid #F5FDF8;color:#FFF;}
+.sc_list .item .score,
+.sc_list .item .hd .time{font-family:Tahoma;}
+.sc_list .item .hd .time i.icons{float:left;width:13px;height:22px;margin:0 4px 0 6px;background-position:-40px -26px;}
+.sc_list .item .bd{height:55px;background-color:#FFF;overflow:hidden;}
+.sc_list .item .team{border-left:1px solid #E7E7E7;margin-left:-1px;width:50%;text-align:center;color:#057142;}
+.sc_list .item .score{height:29px;line-height:29px;font-size:24px;}
+.sc_list .item .name{height:26px;line-height:26px;font-family:"";background-color:#EDEDED;}
+.sc_list .item .ft{position:relative;height:55px;line-height:18px;padding:0 0 0 6px;background-color:#D6F7E1;}
+.sc_list .item .ft a{float:left;padding:0 5px;margin:6px 1px 0;color:#0C7044;}
+.sc_list .item .ft a:hover{text-decoration:none;background-color:#0C7044;color:#FFF;}
+.sc_list .item .hover{top:-55px;left:0;}

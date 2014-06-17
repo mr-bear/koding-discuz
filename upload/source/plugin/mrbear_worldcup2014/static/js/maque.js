@@ -29,22 +29,22 @@ Scroller.prototype = {
 initialize: function(idScroller, idScrollMid, options) { 
 var oThis = this, oScroller = $$(idScroller), oScrollMid = $$(idScrollMid); 
 this.SetOptions(options); 
-this.Side = this.options.Side;//方向 
-this.scroller = oScroller; //对象 
-this.speed = this.options.Speed; //速度 
-this.timer = null; //时间 
-this.pauseHeight = 0; //定高 
-this.pauseWidth = 0; //定宽 
-this.pause = 0; //定高(宽) 
-this.side = 0; //参数 
-//用于上下滚动 
+this.Side = this.options.Side;
+this.scroller = oScroller; 
+this.speed = this.options.Speed; 
+this.timer = null; 
+this.pauseHeight = 0; 
+this.pauseWidth = 0; 
+this.pause = 0; 
+this.side = 0; 
+
 this.heightScroller = parseInt(oScroller.style.height) || oScroller.offsetHeight; 
 this.heightlist = oScrollMid.offsetHeight; 
-//用于左右滚动 
+
 this.widthScroller = parseInt(oScroller.style.width) || oScroller.offsetWidth; 
 this.widthlist = oScrollMid.offsetWidth; 
 
-//js取不到css设置的height和width 
+
 oScroller.style.overflow = "hidden"; 
 oScrollMid.appendChild(oScrollMid.cloneNode(true)); 
 oScrollMid.appendChild(oScrollMid.cloneNode(true)); 
@@ -52,25 +52,25 @@ addEventHandler(oScroller, "mouseover", function() { oThis.Stop(); });
 addEventHandler(oScroller, "mouseout", function() { oThis.Start(); }); 
 this.Start(); 
 }, 
-//设置默认属性 
+ 
 SetOptions: function(options) { 
-this.options = {//默认值 
-Step: 1,//每次变化的px量 
-Speed: 40,//速度(越大越慢) 
-Side: ["left"],//滚动方向:"up"是上，"down"是下，"left"是左，"right"是右 
-PauseHeight: 0,//隔多高停一次 
-PauseWidth: 0,//隔多宽停一次 
-//当上下和左右一起使用时必须设置PauseHeight和PauseWidth来设置转向位置 
-PauseStep: 2000//停顿时间(PauseHeight或PauseWidth大于0该参数才有效) 
+this.options = { 
+Step: 1,
+Speed: 40, 
+Side: ["left"],
+PauseHeight: 0,
+PauseWidth: 0, 
+
+PauseStep: 2000 
 }; 
 Object.extend(this.options, options || {}); 
 }, 
-//转向 
+
 Turn: function() { 
-//通过设置方向数组的排列来转向 
+
 this.Side.push(this.Side.shift().toLowerCase()); 
 }, 
-//上下滚动 
+
 ScrollUpDown: function() { 
 this.pause = this.pauseHeight; 
 this.scroller.scrollTop = this.GetScroll(this.scroller.scrollTop, this.heightScroller, this.heightlist, 
@@ -79,17 +79,17 @@ this.pauseHeight = this.pause;
 var oThis = this; 
 this.timer = window.setTimeout(function(){ oThis.Start(); }, this.speed); 
 }, 
-//左右滚动 
+
 ScrollLeftRight: function() { 
 this.pause = this.pauseWidth; 
-//注意:scrollLeft超过1400会自动变回1400 注意长度 
+
 this.scroller.scrollLeft = this.GetScroll(this.scroller.scrollLeft, this.widthScroller, this.widthlist, 
 this.options.PauseWidth); 
 this.pauseWidth = this.pause; 
 var oThis = this; 
 this.timer = window.setTimeout(function(){ oThis.Start(); }, this.speed); 
 }, 
-//获取设置滚动数据 
+
 GetScroll: function(iScroll, iScroller, ilist, iPause) { 
 var iStep = this.options.Step * this.side; 
 if(this.side > 0){ 
@@ -107,11 +107,10 @@ this.pause += iStep;
 } 
 return (iScroll + iStep); 
 }, 
-//开始 
+
 Start: function() { 
 
-//document.getElementById("test").innerHTML+=sTurn+","; 
-//方向设置 
+
 switch (this.Side[0].toLowerCase()) { 
 case "right" : 
 
@@ -138,7 +137,7 @@ this.side = 1;
 this.ScrollUpDown(); 
 } 
 }, 
-//停止 
+
 Stop: function() { 
 clearTimeout(this.timer); 
 } 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<root>
+	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
+	<item id="version"><![CDATA[X2.5,X3,X3.1,X3.2]]></item>
+	<item id="Time"><![CDATA[2014-06-14 15:55]]></item>
+	<item id="From"><![CDATA[Discuz! Board (http://jsxiong110.kd.io/discuz/upload/)]]></item>
+	<item id="Data">
+		<item id="plugin">
+			<item id="available"><![CDATA[1]]></item>
+			<item id="adminid"><![CDATA[1]]></item>
+			<item id="name"><![CDATA[ÊÀ½ç±­²¥±¨]]></item>
+			<item id="identifier"><![CDATA[mrbear_worldcuplive]]></item>
+			<item id="description"><![CDATA[]]></item>
+			<item id="datatables"><![CDATA[]]></item>
+			<item id="directory"><![CDATA[mrbear_worldcuplive/]]></item>
+			<item id="copyright"><![CDATA[Mr.Bear]]></item>
+			<item id="version"><![CDATA[v1.0.0]]></item>
+			<item id="__modules">
+				<item id="0">
+					<item id="name"><![CDATA[main]]></item>
+					<item id="param"><![CDATA[]]></item>
+					<item id="menu"><![CDATA[]]></item>
+					<item id="url"><![CDATA[]]></item>
+					<item id="type"><![CDATA[11]]></item>
+					<item id="adminid"><![CDATA[0]]></item>
+					<item id="displayorder"><![CDATA[0]]></item>
+					<item id="navtitle"><![CDATA[]]></item>
+					<item id="navicon"><![CDATA[]]></item>
+					<item id="navsubname"><![CDATA[]]></item>
+					<item id="navsuburl"><![CDATA[]]></item>
+				</item>
+			</item>
+		</item>
+		<item id="version"><![CDATA[X2.5,X3,X3.1,X3.2]]></item>
+		<item id="language">
+			<item id="scriptlang">
+				<item id="end_english"><![CDATA[ÒÑ½áÊø]]></item>
+				<item id="begin_english"><![CDATA[Î´¿ªÊ¼]]></item>
+				<item id="live_english"><![CDATA[½øÐÐÖÐ]]></item>
+				<item id="month_english"><![CDATA[ÔÂ]]></item>
+				<item id="day_english"><![CDATA[ÈÕ]]></item>
+				<item id="hour_english"><![CDATA[µã]]></item>
+			</item>
+		</item>
+	</item>
+</root>

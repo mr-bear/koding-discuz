@@ -7,12 +7,12 @@
 <div class="mod">
 	<div style="display:block;width:960px;margin:0 auto;">
     <div class="wctimer_inner">
-        <h3 class="wctimer_hd" id="timeText">{lang mrbear_worldcup2014:text1_english}</h3>
+        <h3 class="wctimer_hd" id="timeText">{lang mrbear_worldcup2014:text4_english}</h3>
         <div class="wctimer_bd clearfix">
-            <span class="wctimer_item wctimer_item_day"><em id="day"></em><span>天</span></span>
-            <span class="wctimer_item"><em id="hour"></em><span>时</span></span>
-            <span class="wctimer_item"><em id="mini"></em><span>分</span></span>
-            <span class="wctimer_item"><em id="sec"></em><span>秒</span></span>
+            <span class="wctimer_item wctimer_item_day"><em id="day"></em><span>{lang mrbear_worldcup2014:day}</span></span>
+            <span class="wctimer_item"><em id="hour"></em><span>{lang mrbear_worldcup2014:hour}</span></span>
+            <span class="wctimer_item"><em id="mini"></em><span>{lang mrbear_worldcup2014:mini}</span></span>
+            <span class="wctimer_item"><em id="sec"></em><span>{lang mrbear_worldcup2014:sec}</span></span>
         </div>
     </div>
     <div class="wctimer_inner" style="width:365px">
@@ -378,7 +378,7 @@ $.ajax({
 			var scheduleData = data.schedule;
 			//roll
 			var myDate = new Date();
-			var unixTime = getTime(myDate);
+			var unixTime = myDate.getTime();
 			var liveM,liveD,liveH;
 			var listArr = new Array();
 			var j=0;
@@ -408,13 +408,16 @@ $.ajax({
 		
 			//schedule list
 			var listInfo = "";
+
 			for (var i = 0; i < scheduleData.length; i++) {
 
 				var unixLiveTime = getTime(scheduleData[i].gametime);
+
 				var flag = false;
 				if(unixLiveTime>unixTime){
 					flag = true;
 				}
+		
 				var beginFlag = '{lang mrbear_worldcup2014:begin_english}';
 				if(!flag){
 					beginFlag = '{lang mrbear_worldcup2014:end_english}';
@@ -428,7 +431,7 @@ $.ajax({
 					listInfo += '<td width="80">'+scheduleData[i]['group']+'</td>';
 				}
 				listInfo += '<td width="170"><span class="shuzi">'+scheduleData[i]['gametime']+'</span></td>';
-				listInfo += '<td width="230" style="text-align:left;"><span class="lv" style="margin-left:30px;"><span class="'+scheduleData[i]['englishHost']+'" style="background-image: url(\'{$_G[siteurl]}source/plugin/mrbear_worldcup2014/static/image/countrylogo.png\');background-repeat: no-repeat;background-size: auto 1000px;display:inline-block;*zoom:1;*display:inline;width:32px;height:27px;margin-bottom:-8px;"></span>'+scheduleData[i]['host'].replace(/[ ]/g,"")+'<em>VS</em>'+'<span class="'+scheduleData[i]['englishGuest'].replace(/[ ]/g,"")+'" style="background-image: url(\'{$_G[siteurl]}source/plugin/mrbear_worldcup2014/static/image/countrylogo.png\');background-repeat: no-repeat;background-size: auto 1000px;display:inline-block;*zoom:1;*display:inline;width:32px;height:27px;margin-bottom:-8px;"></span>'+scheduleData[i]['guest']+'</span></td>';
+				listInfo += '<td width="230" style="text-align:left;"><span class="lv" style="margin-left:30px;"><span class="'+scheduleData[i]['englishHost']+'" style="background-image: url(\'{$_G[siteurl]}source/plugin/mrbear_worldcup2014/static/image/countrylogo.png\');background-repeat: no-repeat;background-size: auto 1000px;display:inline-block;*zoom:1;*display:inline;width:32px;height:27px;margin-bottom:-8px;"></span>'+scheduleData[i]['host'].replace(/[ ]/g,"")+'<em>'+scheduleData[i]['score']+'</em>'+'<span class="'+scheduleData[i]['englishGuest'].replace(/[ ]/g,"")+'" style="background-image: url(\'{$_G[siteurl]}source/plugin/mrbear_worldcup2014/static/image/countrylogo.png\');background-repeat: no-repeat;background-size: auto 1000px;display:inline-block;*zoom:1;*display:inline;width:32px;height:27px;margin-bottom:-8px;"></span>'+scheduleData[i]['guest']+'</span></td>';
 				listInfo += '<td width="100">'+scheduleData[i]['place']+'</td>';
 				listInfo += '<td width="200"><a href="http://kbs.sports.qq.com/#&type=4" target="_blank">{lang mrbear_worldcup2014:qq_english}</a>|<a href="http://sports.sina.com.cn/tv/" target="_blank">{lang mrbear_worldcup2014:sina_english}</a>|<a href="http://tv.cntv.cn/live/cctv5/" target="_blank">CCTV5</a></td>';
 				listInfo += '</tr>';
@@ -505,20 +508,6 @@ $.ajax({
 	}
 })
 
-var zxx = {
-  $: function(id){
-    return document.getElementById(id); 
-  },
-  futureDate: Date.UTC(2014,05,13,4,0),
-  obj: function(){
-    return {
-      sec: zxx.$("sec"),
-      mini: zxx.$("mini"),
-      hour: zxx.$("hour"),
-      day: zxx.$("day")
-    }
-  }
-};
 
 var zxx1 = {
     $: function(id){
@@ -534,15 +523,8 @@ var zxx1 = {
         }
     }
 };
-if(new Date().getTime() < 1405278000000){
-    fnTimeCountDown(zxx.futureDate, zxx.obj());
-}else{
-    $("#timeText").html('{lang mrbear_worldcup2014:text4_english}')
-    fnTimeCountDown(zxx1.futureDate, zxx1.obj());
-}
 
-
-
+fnTimeCountDown(zxx1.futureDate, zxx1.obj());
 
 </script>
 
