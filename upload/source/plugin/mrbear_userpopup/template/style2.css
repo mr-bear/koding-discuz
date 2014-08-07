@@ -1,0 +1,5 @@
+@charset "utf-8";
+/* CSS Document */
+#top_reply .globalNav{ border:none;}
+#top_reply .np-title strong{ display:none;}
+#top_reply .commentTotleNum a:hover strong span{color:#666}/*  |xGv00|94b0a643f1bfc1bebdf5e8864cae0269 */
