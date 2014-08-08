@@ -2,19 +2,20 @@
  * Created by xiongfei on 14-8-7.
  */
 var userid = $(top.document.body).find("#np-pop-iframe").attr("data-id");
-userid = (typeof userid == "undefined") ? "19947628" : userid;
+userid = (typeof userid == "undefined") ? "0" : userid;
 var lastid = 0;
 var reqnum = 10;
 var NPAPI = {
     fetch: function(url, event, data, type) {
+        if(userid == 0 || userid == ''){
+            return ;
+        }
         $.ajax({
             type: 'GET',
-            dataType: 'jsonp',
-            data: data,
-            jsonp: 'callback',
-            jsonpCallback:'npapi',
+            dataType: 'json',
             url: url,
             success: function(res) {
+                console.log(res);
                 if (res.errCode == 0) {
                     //console.log(res)
                     NPPOP.render(res.data);
@@ -24,24 +25,19 @@ var NPAPI = {
             },
             error: function(res) {
                 //alert(res);
+
             }
         });
     },
     usercomment: function() {
-        var url = "http://coral.qq.com/user/" + userid + "/comment?lastid=" + lastid + "&pageflag=1&reqnum=" + reqnum;
-        if(top.registerCoralEvent){  // 2013.12.18 by chuangwang
-            if(top.registerCoralEvent.site){
-                url = "http://"+top.registerCoralEvent.site+".coral.qq.com/user/" + userid + "/comment?lastid=" + lastid + "&pageflag=1&reqnum=" + reqnum;
-            }
-
-        }
+        var url = 'http://jsxiong110.kd.io/koding-discuz/upload/plugin.php?id=mrbear_userpopup:history&uid='+userid+'&start='+lastid+'&limit='+reqnum;
+//        var url = '/upload/plugin.php?id=mrbear_userpopup:history&uid='+userid+'&start='+lastid+'&limit='+reqnum;
         this.fetch(url, "np-user-comment-success", {}, "GET");
     }
 };
 var NPPOP = {
 
     initialize: function() {
-
         if(top.registerCoralEvent){  // 2013.12.18 by chuangwang
             if(top.registerCoralEvent.ownStyle){
                 $('head').append('<link href="'+ top.registerCoralEvent.ownStyle +'" rel="stylesheet" type="text/css" media="screen"/>');
@@ -85,7 +81,7 @@ var NPPOP = {
     }),
 
     close: function() {
-        $(top.document.body).find("#np-pop-iframe").hide();
+        $(top.document.body).find("#np-pop-iframe").remove();
     },
 
     render: function(data) {
@@ -123,18 +119,18 @@ var NPPOP = {
                 userinfo.region = "\u817e\u8baf\u7f51\u53cb";
             }
 
-            if(userinfo.head == ''){
-                $(".np-person-info img.np-avatar").attr("src", "http://mat1.gtimg.com/www/coral2.0/images/g.gif");
-            }else if(userinfo.thirdlogin == 1){
-
-                $(".np-person-info img.np-avatar").attr("src", userinfo.head.replace("46", "96"));
-
-            }else{
-
-                $(".np-person-info img.np-avatar").attr("src", userinfo.head.replace("s=40", "s=100"));
-
-            }
-
+//            if(userinfo.head == ''){
+//                $(".np-person-info img.np-avatar").attr("src", "http://mat1.gtimg.com/www/coral2.0/images/g.gif");
+//            }else if(userinfo.thirdlogin == 1){
+//
+//                $(".np-person-info img.np-avatar").attr("src", userinfo.head.replace("46", "96"));
+//
+//            }else{
+//
+//                $(".np-person-info img.np-avatar").attr("src", userinfo.head.replace("s=40", "s=100"));
+//
+//            }
+            $(".np-person-info img.np-avatar").attr("src", "/discuz/upload/uc_server/avatar.php?uid="+data.usermeta.userid+"&size=middle");
             if(data.usermeta.hwvip == 1){
 
                 $(".np-person-info").find('span:first').addClass('hyy');
@@ -276,11 +272,19 @@ var NPPOP = {
         html = "";
         html += '<li class="np-post">';
         html += '<div class="np-post-header">';
-        if (typeof item.parentinfo != "undefined") {
-            html += '<span class="np-time">' + item.time + '</span>\u56de\u590d\u4e86<a href="javascript:void(0)" class="np-user">' + item.parentinfo.userinfo.nick + '</a>\u7684\u8bc4\u8bba\uff1a<span class="np-text-strong">' + item.parentinfo.content + '</span>';
-        } else {
+//        if (typeof item.parentinfo != "undefined") {
+//            html += '<span class="np-time">' + item.time + '</span>\u56de\u590d\u4e86<a href="javascript:void(0)" class="np-user">' + item.parentinfo.userinfo.nick + '</a>\u7684\u8bc4\u8bba\uff1a<span class="np-text-strong">' + item.parentinfo.content + '</span>';
+//        } else {
+//            html += '<span class="np-time">' + item.time + '</span>\u53d1\u8868\u8bc4\u8bba';
+//        }
+
+        if(item.parent == 1){
+            html += '<span class="np-time">' + item.time + '</span>\u53d1\u8868\u4e3b\u9898';
+        }else{
             html += '<span class="np-time">' + item.time + '</span>\u53d1\u8868\u8bc4\u8bba';
         }
+
+
         html += '</div>'
             + '<div class="np-post-content">'
             + '    <p>' + item.content + '</p>'
