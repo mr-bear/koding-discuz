@@ -2,6 +2,7 @@
  * Created by xiongfei on 14-8-7.
  */
 var userid = $(top.document.body).find("#np-pop-iframe").attr("data-id");
+var siteurl = $(top.document.body).find("#np-pop-iframe").attr("locsite");
 userid = (typeof userid == "undefined") ? "0" : userid;
 var lastid = 0;
 var reqnum = 10;
@@ -15,7 +16,6 @@ var NPAPI = {
             dataType: 'json',
             url: url,
             success: function(res) {
-                console.log(res);
                 if (res.errCode == 0) {
                     //console.log(res)
                     NPPOP.render(res.data);
@@ -30,7 +30,7 @@ var NPAPI = {
         });
     },
     usercomment: function() {
-        var url = 'http://jsxiong110.kd.io/koding-discuz/upload/plugin.php?id=mrbear_userpopup:history&uid='+userid+'&start='+lastid+'&limit='+reqnum;
+        var url = siteurl+'plugin.php?id=mrbear_userpopup:history&uid='+userid+'&start='+lastid+'&limit='+reqnum;
 //        var url = '/upload/plugin.php?id=mrbear_userpopup:history&uid='+userid+'&start='+lastid+'&limit='+reqnum;
         this.fetch(url, "np-user-comment-success", {}, "GET");
     }

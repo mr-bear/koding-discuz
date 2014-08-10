@@ -19,7 +19,7 @@ $returnStruct = array(
 if(!isset($_GET['uid']) || !intval($_GET['uid'])){
     echo json_encode($returnStruct);
 }
-
+global $_G;
 $uid = intval($_GET['uid']);
 $start = (isset($_GET['start']))?intval($_GET['start']):0;
 $limit = (isset($_GET['limit']))?intval($_GET['limit']):20;

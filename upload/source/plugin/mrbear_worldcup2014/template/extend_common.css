@@ -7,7 +7,7 @@
 .mod_banner {margin:0 auto;display: block;width: 960px}
 
 .wctimer{overflow:hidden}
-.wctimer_inner{width:290px;overflow:hidden;height:74px;border:1px solid #dcdcdc;display: inline-block;*zoom:1;*display:inline;}
+.wctimer_inner{width:288px;overflow:hidden;height:74px;border:1px solid #dcdcdc;display: inline-block;*zoom:1;*display:inline;}
 .wctimer_hd{margin-bottom:15px;background:#f7f7f7 url(http://img2.cache.netease.com/f2e/sports/worldcup2014_3/./images/wctimer.png) no-repeat 0 0;text-align:center;font-size:16px;color:#169249;font-family:STHeiti,Microsoft YaHei;line-height:29px}
 .wctimer_bd{width:400px;padding-left:15px}
 .wctimer_item{float:left;display:inline;margin-left:8px;padding-left:8px;border-left:1px solid #ddd;height:20px;line-height:20px}
