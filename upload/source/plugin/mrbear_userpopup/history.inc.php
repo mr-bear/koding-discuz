@@ -9,6 +9,10 @@
 if(!defined('IN_DISCUZ')) {
     exit('Access Denied');
 }
+//error_reporting(E_ALL);
+//ini_set("display_errors", 1);
+
+require_once DISCUZ_ROOT.'/source/function/function_home.php';
 
 $returnStruct = array(
     'errCode' => 1,
@@ -50,7 +54,7 @@ foreach($historyInfo as $key=>$itemHis){
     $upNum = 0;
     $repNum = 0;
     $subject = $itemHis['subject'];
-    $threadInfo = getThread($itemHis['tid']);
+    $threadInfo = getThreadInfo($itemHis['tid']);
     if($itemHis['first'] == 0){
         //reply
         if(!empty($threadInfo)){
@@ -73,6 +77,8 @@ foreach($historyInfo as $key=>$itemHis){
     if(!empty($hotInfo)){
         $upNum = $hotInfo[0]['support'];
     }
+
+    $itemContent = getstr($itemHis['message'], 200,1,0,1);
     $itemCommentStruct = array(
         'id' => $itemHis['pid'],
         'targetid' => $itemHis['tid'],
@@ -80,7 +86,8 @@ foreach($historyInfo as $key=>$itemHis){
         'parent' => $itemHis['first'],
         'time' => $itemHis['dateline'],
         'userid' => $uid,
-        'content' => $itemHis['message'],
+//        'content' => $itemHis['message'],
+        'content' => $itemContent,
         'up' => $upNum,
         'repnum' => $repNum,
         'checkstatus' => $itemHis['invisible'],
@@ -132,7 +139,7 @@ $returnStruct['errCode'] = 0;
 echo json_encode($returnStruct);
 
 
-function getThread($tid){
+function getThreadInfo($tid){
     if(!intval($tid)){
         return array();
     }

@@ -261,8 +261,9 @@ var NPPOP = {
         html += '<li class="np-post">';
         html += '<div class="np-post-header">';
 
-        var str = item.content.replace(/\[quote]([\s\S]*?)\[\/quote\]\s?\s?/ig, '');
-        str = str.replace(/\[img]([\s\S]*?)\[\/img\]\s?\s?/ig, '...');
+        var str = item.content.replace(/\[img]([\s\S]*?)\[\/img\]\s?\s?/ig, '......');
+        var str = item.content.replace(/\[size]([\s\S]*?)\[\/size\]\s?\s?/ig, '......');
+//        str = str.replace(/\[img]([\s\S]*?)\[\/img\]\s?\s?/ig, '...');
         if(item.parent == 1){
             html += '<span class="np-time">' + item.time + '</span>\u53d1\u8868\u4e3b\u9898'+ ' : <a target="_blank" href="' + item.targetinfo.url + '" class="np-link-weak">' + titHtml + '</a>';
             html += '</div>'
