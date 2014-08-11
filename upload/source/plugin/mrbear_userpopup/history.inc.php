@@ -31,6 +31,14 @@ $userInfo = getUserBaseInfo($uid);
 if(empty($userInfo)){
     echo json_encode($returnStruct);
 }
+$groupName = '';
+$userGroupInfo = getUserGroupName($userInfo[0]['groupid']);
+if(!empty($userGroupInfo)){
+    $groupName = $userGroupInfo[0]['grouptitle'];
+}
+
+require_once libfile('function/misc');
+$regLoc = $userInfo[0]['regip'].convertip($userInfo[0]['regip']);
 
 $total = (!empty($historyCountInfo))?$historyCountInfo[0]['count']:0;
 $retNum = count($historyInfo);
@@ -39,12 +47,31 @@ $lastId = 0;
 
 $commentStruct = array();
 foreach($historyInfo as $key=>$itemHis){
+    $upNum = 0;
+    $repNum = 0;
     $subject = $itemHis['subject'];
+    $threadInfo = getThread($itemHis['tid']);
     if($itemHis['first'] == 0){
-        $threadInfo = getThread($itemHis['tid']);
+        //reply
         if(!empty($threadInfo)){
             $subject = $threadInfo[0]['subject'];
         }
+        $hotInfo = getHotreply($itemHis['pid'],$itemHis['tid']);
+
+        $replyRepInfo = getReplyRelNum($itemHis['pid'],$itemHis['tid']);
+        if(!empty($replyRepInfo)){
+            $repNum = $replyRepInfo[0]['count'];
+        }
+    }else{
+        //thread
+        $hotInfo = getHotreply(0,$itemHis['tid']);
+        if(!empty($threadInfo)){
+            $repNum = $threadInfo[0]['replies'];
+        }
+    }
+
+    if(!empty($hotInfo)){
+        $upNum = $hotInfo[0]['support'];
     }
     $itemCommentStruct = array(
         'id' => $itemHis['pid'],
@@ -54,8 +81,8 @@ foreach($historyInfo as $key=>$itemHis){
         'time' => $itemHis['dateline'],
         'userid' => $uid,
         'content' => $itemHis['message'],
-        'up' => 0,
-        'repnum' => 0,
+        'up' => $upNum,
+        'repnum' => $repNum,
         'checkstatus' => $itemHis['invisible'],
         'isdeleted' => $itemHis['invisible'],
         'ip' => 0,
@@ -63,7 +90,7 @@ foreach($historyInfo as $key=>$itemHis){
         'position' => $itemHis['position'],
         'targetinfo' => array(
             'title' => $subject,
-            'url' => $_G['siteurl'].'forum.php?mod=viewthread&tid='.$itemHis['tid'],
+            'url' => $_G['siteurl'].'forum.php?mod=viewthread&tid='.$itemHis['tid'].'#pid'.$itemHis['pid'],
             'checkstatus' => 0,
         ),
     );
@@ -82,10 +109,13 @@ $userMeta = array(
     'commentednum' => 0,
     'upnum' => 0,
     'checkstatus' => 0,
-    'region' => '',
+    'region' => $regLoc,
     'hwvip' => 0,
     'hwlevel' => 0,
-    'thirdlogin' => 0
+    'thirdlogin' => 0,
+    'groupname' => $groupName,
+    'groupid' => $userInfo[0]['groupid'],
+    'friends' => $userInfo[0]['friends']
 );
 
 
@@ -141,7 +171,47 @@ function getUserBaseInfo($uid){
     if(!intval($uid)){
         return array();
     }
-    $queryCon = 'select a.username,a.avatarstatus,a.regdate,a.credits,b.friends,b.posts,b.threads,b.digestposts,b.follower,b.following from '.DB::table('common_member').' a join '.DB::table('common_member_count').' b on  a.uid='.intval($uid).' and a.uid=b.uid';
+    $queryCon = 'select a.username,a.avatarstatus,a.regdate,a.credits,a.groupid,b.friends,b.posts,b.threads,b.digestposts,b.follower,b.following,c.regip from '.DB::table('common_member').' a join '.DB::table('common_member_count').' b join '.DB::table('common_member_status').' c on  a.uid='.intval($uid).' and a.uid=b.uid and a.uid=c.uid';
     $userInfo =  DB::fetch_all($queryCon);
     return $userInfo;
+}
+
+
+function getUserGroupName($gid){
+    if(!intval($gid)){
+        return array();
+    }
+    $queryCon = 'select grouptitle from '.DB::table('common_usergroup').' where groupid='.intval($gid);
+    $groupInfo =  DB::fetch_all($queryCon);
+    return $groupInfo;
+
+}
+
+
+function getHotreply($pid,$tid){
+    if(!intval($tid)){
+        return array();
+    }
+
+    if(intval($pid)){
+        $queryCon = 'select support,against,total from '.DB::table('forum_hotreply_number').' where pid='.intval($pid).' and tid='.intval($tid);
+        $hotInfo =  DB::fetch_all($queryCon);
+    }else{
+        $queryCon = 'select count(support) as support,count(against) as against from '.DB::table('forum_hotreply_number').' where tid='.intval($tid);
+        $hotInfo =  DB::fetch_all($queryCon);
+    }
+
+    return $hotInfo;
+}
+
+
+function getReplyRelNum($pid,$tid){
+    if(!intval($tid) || !intval($pid)){
+        return array();
+    }
+    $sel = 'mod=redirect&goto=findpost&pid='.intval($pid).'&ptid='.intval($tid);
+    $queryCon = 'select count(1) as count from '.DB::table('forum_post').' where tid='.intval($tid).' and message like \'%'.$sel.'%\'';
+    $reInfo =  DB::fetch_all($queryCon);
+    return $reInfo;
+
 }

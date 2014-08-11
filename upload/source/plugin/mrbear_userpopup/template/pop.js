@@ -31,14 +31,13 @@ var NPAPI = {
     },
     usercomment: function() {
         var url = siteurl+'plugin.php?id=mrbear_userpopup:history&uid='+userid+'&start='+lastid+'&limit='+reqnum;
-//        var url = '/upload/plugin.php?id=mrbear_userpopup:history&uid='+userid+'&start='+lastid+'&limit='+reqnum;
         this.fetch(url, "np-user-comment-success", {}, "GET");
     }
 };
 var NPPOP = {
 
     initialize: function() {
-        if(top.registerCoralEvent){  // 2013.12.18 by chuangwang
+        if(top.registerCoralEvent){
             if(top.registerCoralEvent.ownStyle){
                 $('head').append('<link href="'+ top.registerCoralEvent.ownStyle +'" rel="stylesheet" type="text/css" media="screen"/>');
             }
@@ -52,9 +51,8 @@ var NPPOP = {
         $(".np-load-more").click(this.load);
         $(".np-btn-close").click(this.close);
         $(".np-mask").click(this.close);
-
         $("ul.np-timeline").delegate("a.np-btn-spread", "click", this.showLongtext);
-
+        $(".np-load-more").html("\u52a0\u8f7d\u66f4\u591a");
 
         var _this = this;
         $('#np-popframe-content').delegate('.np-con-img','click',function(){
@@ -89,7 +87,7 @@ var NPPOP = {
         max = 0;
         lastid = data.last;
         for (i = 0, len = data.comments.length; i < len; i++) {
-            if (data.comments[i].checkstatus != 2 && data.comments[i].content != "" && data.comments[i].content != "undefined" && data.comments[i].content != null) {
+            if (data.comments[i].checkstatus == 0 && data.comments[i].content != "" && data.comments[i].content != "undefined" && data.comments[i].content != null) {
                 data.comments[i].time = this.formatTime(data.comments[i].time);
                 html += this.template(data.comments[i]);
             }
@@ -113,23 +111,12 @@ var NPPOP = {
             userinfo = data.usermeta;
             userinfo.region = userinfo.region.replace(/:/g, " ");
             if ($.trim(userinfo.region) == "") {
-                userinfo.region = "\u817e\u8baf\u7f51\u53cb";
+                userinfo.region = "\u672a\u77e5";
             }
             if ($.trim(userinfo.nick) == "") {
-                userinfo.region = "\u817e\u8baf\u7f51\u53cb";
+                userinfo.region = "\u672a\u77e5";
             }
 
-//            if(userinfo.head == ''){
-//                $(".np-person-info img.np-avatar").attr("src", "http://mat1.gtimg.com/www/coral2.0/images/g.gif");
-//            }else if(userinfo.thirdlogin == 1){
-//
-//                $(".np-person-info img.np-avatar").attr("src", userinfo.head.replace("46", "96"));
-//
-//            }else{
-//
-//                $(".np-person-info img.np-avatar").attr("src", userinfo.head.replace("s=40", "s=100"));
-//
-//            }
             $(".np-person-info img.np-avatar").attr("src", "/discuz/upload/uc_server/avatar.php?uid="+data.usermeta.userid+"&size=middle");
             if(data.usermeta.hwvip == 1){
 
@@ -141,9 +128,10 @@ var NPPOP = {
 
 
             $(".np-person-info .np-user").html(userinfo.nick);
+            $(".np-person-info .np-btn-group em").html(userinfo.groupname);
             $(".np-person-info .np-btn-area em").html(userinfo.region);
             $(".np-person-info .np-btn-reply em").html(userinfo.commentnum);
-            $(".np-person-info .np-btn-upvote em").html(userinfo.upnum);
+//            $(".np-person-info .np-btn-upvote em").html(userinfo.friends);
 
             this.firt = 1;
         }
@@ -261,40 +249,46 @@ var NPPOP = {
 
         var imgHtml = '';
 
-        var titHtml =''
+        var titHtml ='';
 
         titHtml= item.targetinfo.title.replace(/</g,'&lt;');
         titHtml= titHtml.replace(/>/g,'&gt;');
 
         if(item.picture != undefined && item.picture.length){
-            imgHtml = '<div><img class="np-con-img" src="'+ item.picture[0].url +'/150" />' +  '</div>'
+            imgHtml = '<div><img class="np-con-img" src="'+ item.picture[0].url +'/150" />' +  '</div>';
         }
         html = "";
         html += '<li class="np-post">';
         html += '<div class="np-post-header">';
-//        if (typeof item.parentinfo != "undefined") {
-//            html += '<span class="np-time">' + item.time + '</span>\u56de\u590d\u4e86<a href="javascript:void(0)" class="np-user">' + item.parentinfo.userinfo.nick + '</a>\u7684\u8bc4\u8bba\uff1a<span class="np-text-strong">' + item.parentinfo.content + '</span>';
-//        } else {
-//            html += '<span class="np-time">' + item.time + '</span>\u53d1\u8868\u8bc4\u8bba';
-//        }
 
+        var str = item.content.replace(/\[quote]([\s\S]*?)\[\/quote\]\s?\s?/ig, '');
+        str = str.replace(/\[img]([\s\S]*?)\[\/img\]\s?\s?/ig, '...');
         if(item.parent == 1){
-            html += '<span class="np-time">' + item.time + '</span>\u53d1\u8868\u4e3b\u9898';
+            html += '<span class="np-time">' + item.time + '</span>\u53d1\u8868\u4e3b\u9898'+ ' : <a target="_blank" href="' + item.targetinfo.url + '" class="np-link-weak">' + titHtml + '</a>';
+            html += '</div>'
+                + '<div class="np-post-content">'
+                + '    <p>' + str + '</p>'
+                + '</div>'
+                + '<div class="np-post-footer">'
+                + '<span class="np-btn-upvote">' + item.up + '</span><span class="np-btn-reply">' + item.repnum + '</span>'
+                + '</div>'
+                + '</li>';
         }else{
             html += '<span class="np-time">' + item.time + '</span>\u53d1\u8868\u8bc4\u8bba';
+            html += '</div>'
+                + '<div class="np-post-content">'
+                + '    <p>' + str + '</p>'
+                + imgHtml
+                + '    <a target="_blank" href="' + item.targetinfo.url + '" class="np-link-weak">' + titHtml + '</a>'
+                + '</div>'
+                + '<div class="np-post-footer">'
+                + '<span class="np-btn-upvote">' + item.up + '</span><span class="np-btn-reply">' + item.repnum + '</span>'
+                + '</div>'
+                + '</li>';
         }
 
 
-        html += '</div>'
-            + '<div class="np-post-content">'
-            + '    <p>' + item.content + '</p>'
-            + imgHtml
-            + '    <a target="_blank" href="' + item.targetinfo.url + '" class="np-link-weak">' + titHtml + '</a>'
-            + '</div>'
-            + '<div class="np-post-footer">'
-            + '<span class="np-btn-upvote">' + item.up + '</span><span class="np-btn-reply">' + item.repnum + '</span>'
-            + '</div>'
-            + '</li>'
+
         return html;
     }
 };
