@@ -87,7 +87,11 @@ var NPPOP = {
         max = 0;
         lastid = data.last;
         for (i = 0, len = data.comments.length; i < len; i++) {
-            if (data.comments[i].checkstatus == 0 && data.comments[i].content != "" && data.comments[i].content != "undefined" && data.comments[i].content != null) {
+            if (data.comments[i].checkstatus == 0  && data.comments[i].content != "undefined" && data.comments[i].content != null) {
+
+                if(data.comments[i].content == ""){
+                    data.comments[i].content = '...';
+                }
                 data.comments[i].time = this.formatTime(data.comments[i].time);
                 html += this.template(data.comments[i]);
             }
@@ -261,9 +265,10 @@ var NPPOP = {
         html += '<li class="np-post">';
         html += '<div class="np-post-header">';
 
-        var str = item.content.replace(/\[img]([\s\S]*?)\[\/img\]\s?\s?/ig, '......');
-        var str = item.content.replace(/\[size]([\s\S]*?)\[\/size\]\s?\s?/ig, '......');
+//        var str = item.content.replace(/\[img]([\s\S]*?)\[\/img\]\s?\s?/ig, '......');
+//        var str = item.content.replace(/\[size]([\s\S]*?)\[\/size\]\s?\s?/ig, '......');
 //        str = str.replace(/\[img]([\s\S]*?)\[\/img\]\s?\s?/ig, '...');
+        var str = item.content;
         if(item.parent == 1){
             html += '<span class="np-time">' + item.time + '</span>\u53d1\u8868\u4e3b\u9898'+ ' : <a target="_blank" href="' + item.targetinfo.url + '" class="np-link-weak">' + titHtml + '</a>';
             html += '</div>'

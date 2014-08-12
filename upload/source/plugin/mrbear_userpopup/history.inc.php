@@ -13,6 +13,7 @@ if(!defined('IN_DISCUZ')) {
 //ini_set("display_errors", 1);
 
 require_once DISCUZ_ROOT.'/source/function/function_home.php';
+require_once DISCUZ_ROOT.'/source/function/function_post.php';
 
 $returnStruct = array(
     'errCode' => 1,
@@ -78,7 +79,9 @@ foreach($historyInfo as $key=>$itemHis){
         $upNum = $hotInfo[0]['support'];
     }
 
-    $itemContent = getstr($itemHis['message'], 200,1,0,1);
+//    $itemContent = getstr($itemHis['message'], 0,0,0,0,-1);
+    $itemContent = messagecutstr($itemHis['message'], 100);
+
     $itemCommentStruct = array(
         'id' => $itemHis['pid'],
         'targetid' => $itemHis['tid'],
@@ -135,7 +138,7 @@ $returnStruct['data'] = array(
     'usermeta' => $userMeta,
 );
 $returnStruct['errCode'] = 0;
-
+//var_dump($returnStruct);
 echo json_encode($returnStruct);
 
 
