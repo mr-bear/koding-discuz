@@ -20,18 +20,35 @@ $returnStruct = array(
     'data' => array(),
     'info' => ''
 );
+$uid = 0;
+$start = 0;
+$limit = 20;
+if(isset($_GET['uid'])){
+    if(!is_numeric($_GET['uid'])){
+        $uid = 0;
+    }else{
+        $uid = intval($_GET['uid']);
+    }
 
-if(!isset($_GET['uid']) || !intval($_GET['uid'])){
+}
+if(isset($_GET['start'])){
+    if(!is_numeric($_GET['start'])){
+        $start = 0;
+    }else{
+        $start = intval($_GET['start']);
+    }
+
+}
+
+if($uid == 0){
     echo json_encode($returnStruct);
 }
+
 global $_G;
 $userpop_config = $_G['cache']['plugin']['mrbear_userpopup'];
 $strLen = $userpop_config['strlen'];
 $strLen = (intval($strLen))?intval($strLen):100;
 
-$uid = intval($_GET['uid']);
-$start = (isset($_GET['start']))?intval($_GET['start']):0;
-$limit = (isset($_GET['limit']))?intval($_GET['limit']):20;
 
 $historyCountInfo = getHistoryCount($uid);
 $historyInfo = getUserHistory($uid,$start,$limit);
