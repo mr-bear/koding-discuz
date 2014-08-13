@@ -25,6 +25,10 @@ if(!isset($_GET['uid']) || !intval($_GET['uid'])){
     echo json_encode($returnStruct);
 }
 global $_G;
+$userpop_config = $_G['cache']['plugin']['mrbear_userpopup'];
+$strLen = $userpop_config['strlen'];
+$strLen = (intval($strLen))?intval($strLen):100;
+
 $uid = intval($_GET['uid']);
 $start = (isset($_GET['start']))?intval($_GET['start']):0;
 $limit = (isset($_GET['limit']))?intval($_GET['limit']):20;
@@ -80,7 +84,7 @@ foreach($historyInfo as $key=>$itemHis){
     }
 
 //    $itemContent = getstr($itemHis['message'], 0,0,0,0,-1);
-    $itemContent = messagecutstr($itemHis['message'], 100);
+    $itemContent = messagecutstr($itemHis['message'], intval($strLen*2));
 
     $itemCommentStruct = array(
         'id' => $itemHis['pid'],

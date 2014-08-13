@@ -30,11 +30,11 @@ class plugin_mrbear_userpopup_forum extends plugin_mrbear_userpopup {
             if($postuid == $userid){
                 $title = lang('plugin/mrbear_userpopup','myhistory');
             }
-            if($userid){
-                $extgrouptitles = '<p><em><a class="historylogo" style="padding:5px 10px 5px 25px;" href="javascript:showIframe('.$postuid.')">'.$title.'</a></em></p>';
-            }else{
-                $extgrouptitles = '<p><em><a class="historylogo" style="padding:5px 10px 5px 25px;" href="member.php?mod=logging&action=login" onclick="showWindow(\'login\', this.href)">'.$title.'</a></em></p>';
-
+            $extgrouptitles = '<p><em><a class="historylogo" style="padding:5px 10px 5px 25px;" href="javascript:showIframe('.$postuid.')">'.$title.'</a></em></p>';
+            if($this->islogin){
+                if(!$userid){
+                    $extgrouptitles = '<p><em><a class="historylogo" style="padding:5px 10px 5px 25px;" href="member.php?mod=logging&action=login" onclick="showWindow(\'login\', this.href)">'.$title.'</a></em></p>';
+                }
             }
 
             $ndsreturneg[] = $extgrouptitles;

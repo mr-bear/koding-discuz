@@ -9,7 +9,7 @@ $(top.document.body).find("#np-pop-iframe").attr("frameborder","0");
 $(top.document.body).find("#np-pop-iframe").attr("frameborder","0");
 $(top.document.body).find("#np-pop-iframe").attr("scrolling","no");
 if ($.browser.msie && ($.browser.version == '6.0') && !$.support.style) {
-    //  ie6 兼容
+    //  ie6
     if($(top.document.body).find('#np-pop-iframe').length != 0){
         $(top.document.body).find('#np-pop-iframe').css('position','absolute');
     }
