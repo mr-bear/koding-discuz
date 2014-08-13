@@ -121,7 +121,7 @@ var NPPOP = {
                 userinfo.region = "\u672a\u77e5";
             }
 
-            $(".np-person-info img.np-avatar").attr("src", "/discuz/upload/uc_server/avatar.php?uid="+data.usermeta.userid+"&size=middle");
+            $(".np-person-info img.np-avatar").attr("src", siteurl+"uc_server/avatar.php?uid="+data.usermeta.userid+"&size=middle");
             if(data.usermeta.hwvip == 1){
 
                 $(".np-person-info").find('span:first').addClass('hyy');
