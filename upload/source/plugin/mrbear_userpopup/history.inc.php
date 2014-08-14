@@ -42,6 +42,7 @@ if(isset($_GET['start'])){
 
 if($uid == 0){
     echo json_encode($returnStruct);
+    exit();
 }
 
 global $_G;
@@ -56,6 +57,7 @@ $userInfo = getUserBaseInfo($uid);
 
 if(empty($userInfo)){
     echo json_encode($returnStruct);
+    exit();
 }
 $groupName = '';
 $userGroupInfo = getUserGroupName($userInfo[0]['groupid']);
