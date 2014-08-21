@@ -20,12 +20,17 @@ var NPAPI = {
                     //console.log(res)
                     NPPOP.render(res.data);
                 } else {
-                    $("body").trigger("np-error", res.errCode);
+//                    $("body").trigger("np-error", res.errCode);
+                    var errhtml = '<li style="background:#fff;text-align:center; padding:50px 0; color:#666;">\u6682\u65e0\u8bc4\u8bba\uff01</li>';
+                    $("ul.np-timeline").append(errhtml);
+                    $(".np-load-more-loading").remove();
                 }
             },
             error: function(res) {
                 //alert(res);
-
+                var errhtml = '<li style="background:#fff;text-align:center; padding:50px 0; color:#666;">\u6682\u65e0\u8bc4\u8bba\uff01</li>';
+                $("ul.np-timeline").append(errhtml);
+                $(".np-load-more-loading").remove();
             }
         });
     },

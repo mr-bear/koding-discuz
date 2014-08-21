@@ -56,7 +56,7 @@ class plugin_mrbear_userpopup_forum extends plugin_mrbear_userpopup {
                 if(id == 0 || id == \'\'){
                     return;
                 }
-                var appendHtml = \'<iframe src="'.$_G['siteurl'].'source/plugin/mrbear_userpopup/template/main.htm" locsite="'.$_G['siteurl'].'" allowtransparency="true" frameborder="0" scrolling="no" id="np-pop-iframe" data-id="\'+id+\'" style="width:100%;height:100%;z-index:999999;position:fixed;_position:absolute;*+position:fixed;_left:100px;top:0px;left:0px;border:none;overflow:hidden;display: none" ></iframe>\';
+                var appendHtml = \'<iframe src="'.$_G['siteurl'].'source/plugin/mrbear_userpopup/template/main.htm" locsite="'.$_G['siteurl'].'" allowtransparency="true" frameborder="0" scrolling="no" id="np-pop-iframe" data-id="\'+id+\'" style="width:100%;height:100%;z-index:999999;position:fixed;_position:absolute;*+position:fixed;_left:100px;top:0px;left:0px;border:none;overflow:hidden;" ></iframe>\';
                 var appendObj = document.getElementsByTagName("body")[0];
                 appendObj.innerHTML = appendObj.innerHTML+appendHtml;
             }
