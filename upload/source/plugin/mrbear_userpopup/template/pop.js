@@ -37,22 +37,15 @@ var NPAPI = {
 var NPPOP = {
 
     initialize: function() {
-        if(top.registerCoralEvent){
-            if(top.registerCoralEvent.ownStyle){
-                $('head').append('<link href="'+ top.registerCoralEvent.ownStyle +'" rel="stylesheet" type="text/css" media="screen"/>');
-            }
-
-        }
-
         this.firt = 0;
 
         this.popup();
         this.load();
-        $(".np-load-more").click(this.load);
+        $(".np-load-more").click(this.load).html("\u52a0\u8f7d\u66f4\u591a");
         $(".np-btn-close").click(this.close);
         $(".np-mask").click(this.close);
         $("ul.np-timeline").delegate("a.np-btn-spread", "click", this.showLongtext);
-        $(".np-load-more").html("\u52a0\u8f7d\u66f4\u591a");
+
 
         var _this = this;
         $('#np-popframe-content').delegate('.np-con-img','click',function(){
@@ -83,8 +76,8 @@ var NPPOP = {
     },
 
     render: function(data) {
-        html = "";
-        max = 0;
+        var html = "";
+        var max = 0;
         lastid = data.last;
         for (i = 0, len = data.comments.length; i < len; i++) {
             if (data.comments[i].checkstatus == 0  && data.comments[i].content != "undefined" && data.comments[i].content != null) {
@@ -98,7 +91,7 @@ var NPPOP = {
         }
 
         if(!data.comments.length){
-            html = '<li style="background:#fff;text-align:center; padding:50px 0; color:#666;">\u6682\u65e0\u8bc4\u8bba\uff01</li>'
+            html = '<li style="background:#fff;text-align:center; padding:50px 0; color:#666;">\u6682\u65e0\u8bc4\u8bba\uff01</li>';
         }
 
         $("ul.np-timeline").append(html);
@@ -112,7 +105,7 @@ var NPPOP = {
         if (this.firt === 0) {
 
 
-            userinfo = data.usermeta;
+            var userinfo = data.usermeta;
             userinfo.region = userinfo.region.replace(/:/g, " ");
             if ($.trim(userinfo.region) == "") {
                 userinfo.region = "\u672a\u77e5";

@@ -45,124 +45,128 @@ if($uid == 0){
     exit();
 }
 
-global $_G;
-$userpop_config = $_G['cache']['plugin']['mrbear_userpopup'];
-$strLen = $userpop_config['strlen'];
-$strLen = (intval($strLen))?intval($strLen):100;
+try{
+    global $_G;
+    $userpop_config = $_G['cache']['plugin']['mrbear_userpopup'];
+    $strLen = $userpop_config['strlen'];
+    $strLen = (intval($strLen))?intval($strLen):100;
 
 
-$historyCountInfo = getHistoryCount($uid);
-$historyInfo = getUserHistory($uid,$start,$limit);
-$userInfo = getUserBaseInfo($uid);
+    $historyCountInfo = getHistoryCount($uid);
+    $historyInfo = getUserHistory($uid,$start,$limit);
+    $userInfo = getUserBaseInfo($uid);
 
-if(empty($userInfo)){
-    echo json_encode($returnStruct);
-    exit();
-}
-$groupName = '';
-$userGroupInfo = getUserGroupName($userInfo[0]['groupid']);
-if(!empty($userGroupInfo)){
-    $groupName = $userGroupInfo[0]['grouptitle'];
-}
-
-require_once libfile('function/misc');
-$regLoc = $userInfo[0]['regip'].convertip($userInfo[0]['regip']);
-
-$total = (!empty($historyCountInfo))?$historyCountInfo[0]['count']:0;
-$retNum = count($historyInfo);
-$firstId = 0;
-$lastId = 0;
-
-$commentStruct = array();
-foreach($historyInfo as $key=>$itemHis){
-    $upNum = 0;
-    $repNum = 0;
-    $subject = $itemHis['subject'];
-    $threadInfo = getThreadInfo($itemHis['tid']);
-    if($itemHis['first'] == 0){
-        //reply
-        if(!empty($threadInfo)){
-            $subject = $threadInfo[0]['subject'];
-        }
-        $hotInfo = getHotreply($itemHis['pid'],$itemHis['tid']);
-
-        $replyRepInfo = getReplyRelNum($itemHis['pid'],$itemHis['tid']);
-        if(!empty($replyRepInfo)){
-            $repNum = $replyRepInfo[0]['count'];
-        }
-    }else{
-        //thread
-        $hotInfo = getHotreply(0,$itemHis['tid']);
-        if(!empty($threadInfo)){
-            $repNum = $threadInfo[0]['replies'];
-        }
+    if(empty($userInfo)){
+        echo json_encode($returnStruct);
+        exit();
+    }
+    $groupName = '';
+    $userGroupInfo = getUserGroupName($userInfo[0]['groupid']);
+    if(!empty($userGroupInfo)){
+        $groupName = $userGroupInfo[0]['grouptitle'];
     }
 
-    if(!empty($hotInfo)){
-        $upNum = $hotInfo[0]['support'];
+    require_once libfile('function/misc');
+    $regLoc = $userInfo[0]['regip'].convertip($userInfo[0]['regip']);
+
+    $total = (!empty($historyCountInfo))?$historyCountInfo[0]['count']:0;
+    $retNum = count($historyInfo);
+    $firstId = 0;
+    $lastId = 0;
+
+    $commentStruct = array();
+    foreach($historyInfo as $key=>$itemHis){
+        $upNum = 0;
+        $repNum = 0;
+        $subject = $itemHis['subject'];
+        $threadInfo = getThreadInfo($itemHis['tid']);
+        if($itemHis['first'] == 0){
+            //reply
+            if(!empty($threadInfo)){
+                $subject = $threadInfo[0]['subject'];
+            }
+            $hotInfo = getHotreply($itemHis['pid'],$itemHis['tid']);
+
+            $replyRepInfo = getReplyRelNum($itemHis['pid'],$itemHis['tid']);
+            if(!empty($replyRepInfo)){
+                $repNum = $replyRepInfo[0]['count'];
+            }
+        }else{
+            //thread
+            $hotInfo = getHotreply(0,$itemHis['tid']);
+            if(!empty($threadInfo)){
+                $repNum = $threadInfo[0]['replies'];
+            }
+        }
+
+        if(!empty($hotInfo)){
+            $upNum = $hotInfo[0]['support'];
+        }
+
+    //    $itemContent = getstr($itemHis['message'], 0,0,0,0,-1);
+        $itemContent = messagecutstr($itemHis['message'], intval($strLen*2));
+
+        $itemCommentStruct = array(
+            'id' => $itemHis['pid'],
+            'targetid' => $itemHis['tid'],
+            'appid' => 0,
+            'parent' => $itemHis['first'],
+            'time' => $itemHis['dateline'],
+            'userid' => $uid,
+    //        'content' => $itemHis['message'],
+            'content' => $itemContent,
+            'up' => $upNum,
+            'repnum' => $repNum,
+            'checkstatus' => $itemHis['invisible'],
+            'isdeleted' => $itemHis['invisible'],
+            'ip' => 0,
+            'isfirst' => $itemHis['first'],
+            'position' => $itemHis['position'],
+            'targetinfo' => array(
+                'title' => $subject,
+                'url' => $_G['siteurl'].'forum.php?mod=viewthread&tid='.$itemHis['tid'].'#pid'.$itemHis['pid'],
+                'checkstatus' => 0,
+            ),
+        );
+        $commentStruct[] = $itemCommentStruct;
+        if($key == 0){
+            $firstId = $itemHis['pid'];
+        }
+        $lastId = $itemHis['pid'];
     }
 
-//    $itemContent = getstr($itemHis['message'], 0,0,0,0,-1);
-    $itemContent = messagecutstr($itemHis['message'], intval($strLen*2));
-
-    $itemCommentStruct = array(
-        'id' => $itemHis['pid'],
-        'targetid' => $itemHis['tid'],
-        'appid' => 0,
-        'parent' => $itemHis['first'],
-        'time' => $itemHis['dateline'],
+    $userMeta = array(
         'userid' => $uid,
-//        'content' => $itemHis['message'],
-        'content' => $itemContent,
-        'up' => $upNum,
-        'repnum' => $repNum,
-        'checkstatus' => $itemHis['invisible'],
-        'isdeleted' => $itemHis['invisible'],
-        'ip' => 0,
-        'isfirst' => $itemHis['first'],
-        'position' => $itemHis['position'],
-        'targetinfo' => array(
-            'title' => $subject,
-            'url' => $_G['siteurl'].'forum.php?mod=viewthread&tid='.$itemHis['tid'].'#pid'.$itemHis['pid'],
-            'checkstatus' => 0,
-        ),
+        'nick' => $userInfo[0]['username'],
+        'head' => '',
+        'commentnum' => $userInfo[0]['posts'],
+        'commentednum' => 0,
+        'upnum' => 0,
+        'checkstatus' => 0,
+        'region' => $regLoc,
+        'hwvip' => 0,
+        'hwlevel' => 0,
+        'thirdlogin' => 0,
+        'groupname' => $groupName,
+        'groupid' => $userInfo[0]['groupid'],
+        'friends' => $userInfo[0]['friends']
     );
-    $commentStruct[] = $itemCommentStruct;
-    if($key == 0){
-        $firstId = $itemHis['pid'];
-    }
-    $lastId = $itemHis['pid'];
+
+
+    $returnStruct['data'] = array(
+        'total' => $total,
+        'retnum' => $retNum,
+        'first' => $firstId,
+        'last' => $lastId,
+        'comments' => $commentStruct,
+        'usermeta' => $userMeta,
+    );
+    $returnStruct['errCode'] = 0;
+    //var_dump($returnStruct);
+    echo json_encode($returnStruct);
+}catch(Exception $e){
+    echo json_encode($returnStruct);
 }
-
-$userMeta = array(
-    'userid' => $uid,
-    'nick' => $userInfo[0]['username'],
-    'head' => '',
-    'commentnum' => $userInfo[0]['posts'],
-    'commentednum' => 0,
-    'upnum' => 0,
-    'checkstatus' => 0,
-    'region' => $regLoc,
-    'hwvip' => 0,
-    'hwlevel' => 0,
-    'thirdlogin' => 0,
-    'groupname' => $groupName,
-    'groupid' => $userInfo[0]['groupid'],
-    'friends' => $userInfo[0]['friends']
-);
-
-
-$returnStruct['data'] = array(
-    'total' => $total,
-    'retnum' => $retNum,
-    'first' => $firstId,
-    'last' => $lastId,
-    'comments' => $commentStruct,
-    'usermeta' => $userMeta,
-);
-$returnStruct['errCode'] = 0;
-//var_dump($returnStruct);
-echo json_encode($returnStruct);
 
 
 function getThreadInfo($tid){
