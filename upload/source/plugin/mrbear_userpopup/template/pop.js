@@ -26,7 +26,7 @@ var NPAPI = {
                     $(".np-load-more-loading").remove();
                 }
             },
-            error: function(res) {
+            error: function() {
                 //alert(res);
                 var errhtml = '<li style="background:#fff;text-align:center; padding:50px 0; color:#666;">\u6682\u65e0\u8bc4\u8bba\uff01</li>';
                 $("ul.np-timeline").append(errhtml);
@@ -56,7 +56,7 @@ var NPPOP = {
         $('#np-popframe-content').delegate('.np-con-img','click',function(){
             $(this).unbind().bind('load',function(){
                 _this.scroll.tinyscrollbar_update('relative');
-            })
+            });
             var srcUrl =$(this).attr('src');
             if(/\/150$/.test(srcUrl)){
                 srcUrl = srcUrl.replace(/\/150$/,'/500')
@@ -120,14 +120,6 @@ var NPPOP = {
             }
 
             $(".np-person-info img.np-avatar").attr("src", siteurl+"uc_server/avatar.php?uid="+data.usermeta.userid+"&size=middle");
-            if(data.usermeta.hwvip == 1){
-
-                $(".np-person-info").find('span:first').addClass('hyy');
-
-                $(".np-person-info .hyy").find('a').addClass('huiyuan p'+data.usermeta.hwlevel);
-
-            }
-
 
             $(".np-person-info .np-user").html(userinfo.nick);
             $(".np-person-info .np-btn-group em").html(userinfo.groupname);

@@ -53,7 +53,8 @@ try{
 
 
     $historyCountInfo = getHistoryCount($uid);
-    $historyInfo = getUserHistory($uid,$start,$limit);
+//    $historyInfo = getUserHistory($uid,$start,$limit);
+    $historyInfo = filterUserHis($uid,$start,$limit);
     $userInfo = getUserBaseInfo($uid);
 
     if(empty($userInfo)){
@@ -168,6 +169,18 @@ try{
     echo json_encode($returnStruct);
 }
 
+function filterUserHis($uid,$start=0,$limit=20){
+    $userHisInfo = getAllUserHistory($uid,$start);
+    if(empty($userHisInfo)){
+        return array();
+    }
+
+    krsort($userHisInfo);
+    $tempData = array_slice($userHisInfo,0,$limit);
+    array_values($tempData);
+    return $tempData;
+}
+
 
 function getThreadInfo($tid){
     if(!intval($tid)){
@@ -198,6 +211,21 @@ function getUserHistory($uid,$start=0,$limit=20){
         $queryCon = "SELECT pid,fid,tid,first,subject,message,dateline,position,invisible FROM ".DB::table('forum_post')." WHERE authorid = ".intval($uid)." order by dateline desc limit ".$limit;
     }else{
         $queryCon = "SELECT pid,fid,tid,first,subject,message,dateline,position,invisible FROM ".DB::table('forum_post')." WHERE authorid = ".intval($uid)." and pid < ".$start." order by dateline desc limit ".$limit;
+    }
+
+    $postInfo = DB::fetch_all($queryCon);
+    return $postInfo;
+}
+
+function getAllUserHistory($uid,$start=0){
+    if(!intval($uid)){
+        return array();
+    }
+    $start = intval($start);
+    if(!$start){
+        $queryCon = "SELECT pid,fid,tid,first,subject,message,dateline,position,invisible FROM ".DB::table('forum_post')." WHERE authorid = ".intval($uid);
+    }else{
+        $queryCon = "SELECT pid,fid,tid,first,subject,message,dateline,position,invisible FROM ".DB::table('forum_post')." WHERE authorid = ".intval($uid)." and pid < ".$start;
     }
 
     $postInfo = DB::fetch_all($queryCon);
