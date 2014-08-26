@@ -115,7 +115,7 @@ try{
             'time' => $itemHis['dateline'],
             'userid' => $uid,
     //        'content' => $itemHis['message'],
-            'content' => $itemContent,
+            'content' => urlencode($itemContent),
             'up' => $upNum,
             'repnum' => $repNum,
             'checkstatus' => $itemHis['invisible'],
@@ -124,7 +124,7 @@ try{
             'isfirst' => $itemHis['first'],
             'position' => $itemHis['position'],
             'targetinfo' => array(
-                'title' => $subject,
+                'title' => urlencode($subject),
                 'url' => $_G['siteurl'].'forum.php?mod=viewthread&tid='.$itemHis['tid'].'#pid'.$itemHis['pid'],
                 'checkstatus' => 0,
             ),
@@ -138,7 +138,7 @@ try{
 
     $userMeta = array(
         'userid' => $uid,
-        'nick' => $userInfo[0]['username'],
+        'nick' => urlencode($userInfo[0]['username']),
         'head' => '',
         'commentnum' => $userInfo[0]['posts'],
         'commentednum' => 0,
@@ -148,7 +148,7 @@ try{
         'hwvip' => 0,
         'hwlevel' => 0,
         'thirdlogin' => 0,
-        'groupname' => $groupName,
+        'groupname' => urlencode($groupName),
         'groupid' => $userInfo[0]['groupid'],
         'friends' => $userInfo[0]['friends']
     );
@@ -164,9 +164,9 @@ try{
     );
     $returnStruct['errCode'] = 0;
     //var_dump($returnStruct);
-    echo json_encode($returnStruct);
+    echo urldecode(json_encode($returnStruct));
 }catch(Exception $e){
-    echo json_encode($returnStruct);
+    echo urldecode(json_encode($returnStruct));
 }
 
 function filterUserHis($uid,$start=0,$limit=20){

@@ -2,7 +2,7 @@
 <root>
 	<item id="Title"><![CDATA[Discuz! Plugin]]></item>
 	<item id="Version"><![CDATA[X2.5,X3,X3.1,X3.2]]></item>
-	<item id="Time"><![CDATA[2014-08-13 14:13]]></item>
+	<item id="Time"><![CDATA[2014-08-25 19:29]]></item>
 	<item id="From"><![CDATA[Discuz! Board (http://jsxiong110.kd.io/koding-discuz/upload/)]]></item>
 	<item id="Data">
 		<item id="plugin">
@@ -36,7 +36,7 @@
 			<item id="0">
 				<item id="displayorder"><![CDATA[0]]></item>
 				<item id="title"><![CDATA[是否判断的登录]]></item>
-				<item id="description"><![CDATA[]]></item>
+				<item id="description"><![CDATA[配置开启时，需要登录才能显示详情]]></item>
 				<item id="variable"><![CDATA[islogin]]></item>
 				<item id="type"><![CDATA[radio]]></item>
 				<item id="value"><![CDATA[0]]></item>
