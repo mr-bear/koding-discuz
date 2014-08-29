@@ -48,9 +48,9 @@ if($uid == 0){
 try{
     global $_G;
     $userpop_config = $_G['cache']['plugin']['mrbear_userpopup'];
+    $charset = strtoupper($_G['charset']);
     $strLen = $userpop_config['strlen'];
     $strLen = (intval($strLen))?intval($strLen):100;
-
 
     $historyCountInfo = getHistoryCount($uid);
 //    $historyInfo = getUserHistory($uid,$start,$limit);
@@ -106,7 +106,10 @@ try{
 
     //    $itemContent = getstr($itemHis['message'], 0,0,0,0,-1);
         $itemContent = messagecutstr($itemHis['message'], intval($strLen*2));
-
+        if('UTF-8' != $charset){
+            $itemContent = diconv($itemContent,$charset,'UTF-8');
+            $subject = diconv($subject,$charset,'UTF-8');
+        }
         $itemCommentStruct = array(
             'id' => $itemHis['pid'],
             'targetid' => $itemHis['tid'],
@@ -136,9 +139,16 @@ try{
         $lastId = $itemHis['pid'];
     }
 
+    $nickName = $userInfo[0]['username'];
+    if('UTF-8' != $charset){
+        $nickName = diconv($nickName,$charset,'UTF-8');
+        $groupName = diconv($groupName,$charset,'UTF-8');
+        $regLoc = diconv($regLoc,$charset,'UTF-8');
+    }
+
     $userMeta = array(
         'userid' => $uid,
-        'nick' => $userInfo[0]['username'],
+        'nick' => $nickName,
         'head' => '',
         'commentnum' => $userInfo[0]['posts'],
         'commentednum' => 0,
@@ -164,30 +174,12 @@ try{
     );
     $returnStruct['errCode'] = 0;
     //var_dump($returnStruct);
-    echo urldecode(json_encode(_connectUrlencode($returnStruct)));
+
+    echo json_encode($returnStruct);
 }catch(Exception $e){
     echo json_encode($returnStruct);
 }
 
-function _connectUrlencode($value) {
-
-    if (is_array($value)) {
-
-        foreach ($value as $k => $v) {
-
-            $value[$k] = _connectUrlencode($v);
-
-        }
-
-    } else if (is_string($value)) {
-
-        $value = urlencode(str_replace(array("\r\n", "\r", "\n", "\"", "\/", "\t"), array('\\n', '\\n', '\\n', '\\"', '\\/', '\\t'), $value));
-
-    }
-
-    return $value;
-
-}
 
 function filterUserHis($uid,$start=0,$limit=20){
     $userHisInfo = getAllUserHistory($uid,$start);
