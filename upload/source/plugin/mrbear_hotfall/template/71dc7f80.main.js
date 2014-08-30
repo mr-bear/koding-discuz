@@ -191,10 +191,10 @@
 	}), require(["", "", "", "", "lib/scrollto", "lib/touchToggle"], function(e, t, n, r, i, s, o) {
 		"use strict;";
 
-		$("body").delegate("a[data-gaevent]", "click", function() {
-			var e = $(this).data("gaevent").split(":");
-			_gaq.push(["_trackEvent", e[0], $(this).attr("href"), e[e.length - 1]])
-		});
+//		$("body").delegate("a[data-gaevent]", "click", function() {
+//			var e = $(this).data("gaevent").split(":");
+//			_gaq.push(["_trackEvent", e[0], $(this).attr("href"), e[e.length - 1]])
+//		});
 		var b = $(window),
 			w = $(document),
 			E = ' <div class="gotop-wrap">                            <a id="gotopBtn" href="javascript:void(0);" title="回到顶部">                                <span class="icon icon-totop"></span>                            </a>                        </div>';
