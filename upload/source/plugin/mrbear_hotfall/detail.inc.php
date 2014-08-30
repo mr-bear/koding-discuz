@@ -68,7 +68,7 @@ if($limit == 0){
 
 $hotTime = strtotime($current) - 86400*2;
 $hotNum = getHotNum($hotTime);
-$threadlist = C::t('forum_thread')->fetch_all_by_dateline($hotTime,$offset,$limit,'views','ASC');
+$threadlist = C::t('forum_thread')->fetch_all_by_dateline($hotTime,$offset,$limit,'views','DESC');
 
 foreach($threadlist as $itemThread){
     //authorInfo
