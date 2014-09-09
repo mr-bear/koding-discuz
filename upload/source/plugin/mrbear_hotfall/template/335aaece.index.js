@@ -383,10 +383,10 @@
             }, d.prototype.getSize = function() {
                 this.size = t(this.element)
             }, d.prototype.css = function(e) {
-                var t = this.element.style;
+                var t1 = this.element.style;
                 for (var n in e) {
-                    var r = p[n] || n;
-                    t[r] = e[n]
+                    var r1 = p[n] || n;
+                    t1[r1] = e[n];
                 }
             }, d.prototype.getPosition = function() {
                 var e = n(this.element),
@@ -469,7 +469,7 @@
             };
             var g = {
                 "-webkit-transform": "transform",
-                "-moz-transform": "transform",
+//                "-moz-transform": "transform",
                 "-o-transform": "transform"
             };
             d.prototype.ontransitionend = function(e) {
@@ -1388,7 +1388,7 @@
                     a = 1e3,
                     f = "",
                     l = i;
-                return Math.floor(i / a) <= 0 ? f = "刚刚" : i < u ? f = Math.floor(i / a) + "秒前" : i < o ? f = Math.floor(i / u) + "分钟前" : i < o * 3 ? f = Math.floor(i / o) + "小时前" : i < s && r.getDate() == n.getDate() ? (f = "今天 ", f += r.getHours() > 9 ? r.getHours() : "0" + r.getHours(), f += ":", f += r.getMinutes() > 9 ? r.getMinutes() : "0" + r.getMinutes()) : i < s * 2 && r.getDate() == n.getDate() - 1 ? (f = "昨天 ", f += r.getHours() > 9 ? r.getHours() : "0" + r.getHours(), f += ":", f += r.getMinutes() > 9 ? r.getMinutes() : "0" + r.getMinutes()) : (f = r.getFullYear(), f += "-", f += r.getMonth() > 8 ? r.getMonth() + 1 : "0" + (r.getMonth() + 1), f += "-", f += r.getDate() > 9 ? r.getDate() : "0" + r.getDate(), f += " ", f += r.getHours() > 9 ? r.getHours() : "0" + r.getHours(), f += ":", f += r.getMinutes() > 9 ? r.getMinutes() : "0" + r.getMinutes()), f
+                return Math.floor(i / a) <= 0 ? f = "\u521a\u521a" : i < u ? f = Math.floor(i / a) + "\u79d2\u524d" : i < o ? f = Math.floor(i / u) + "\u5206\u949f\u524d" : i < o * 3 ? f = Math.floor(i / o) + "\u5c0f\u65f6\u524d" : i < s && r.getDate() == n.getDate() ? (f = "\u4eca\u5929 ", f += r.getHours() > 9 ? r.getHours() : "0" + r.getHours(), f += ":", f += r.getMinutes() > 9 ? r.getMinutes() : "0" + r.getMinutes()) : i < s * 2 && r.getDate() == n.getDate() - 1 ? (f = "\u6628\u5929 ", f += r.getHours() > 9 ? r.getHours() : "0" + r.getHours(), f += ":", f += r.getMinutes() > 9 ? r.getMinutes() : "0" + r.getMinutes()) : (f = r.getFullYear(), f += "-", f += r.getMonth() > 8 ? r.getMonth() + 1 : "0" + (r.getMonth() + 1), f += "-", f += r.getDate() > 9 ? r.getDate() : "0" + r.getDate(), f += " ", f += r.getHours() > 9 ? r.getHours() : "0" + r.getHours(), f += ":", f += r.getMinutes() > 9 ? r.getMinutes() : "0" + r.getMinutes()), f
             },
             appendArticles: function(e) {
                 var t = this,
@@ -1444,13 +1444,13 @@
                         }
                     }
                     r.params.retrieve_type === "by_channel" ? d = p + m({
-                        channelClass: "label-common",
+                        channelClass: "label-read",
                         origin: location.origin,
                         subName: l.subject.url,
                         key: l.subject.key,
                         name: l.subject.name
                     }) : r.params.retrieve_type === "by_subject" && (r.params.subject_key != l.subject_key ? d = p + m({
-                        channelClass: "label-common",
+                        channelClass: "label-read",
                         origin: location.origin,
                         subName: l.subject.url,
                         key: l.subject.key,
@@ -1486,13 +1486,13 @@
                 $("#waterfallLoading").show(), $.ajax({
                     url: "plugin.php",
                     data: $.extend(!0, t.settings.params, {
-                        limit: e ? e : 10,
+                        limit: e ? e : 20,
                         offset: n,
                         id: 'mrbear_hotfall:detail'
                     }),
                     cache: !1,
                     success: function(e) {
-                        t.appendArticles(e), e.result.length + n >= e.total && ($(window).unbind("scroll"), $("#waterfallLoading").text("没有更多了").show(), $(t.settings.footerSelector).show())
+                        t.appendArticles(e), e.result.length + n >= e.total && ($(window).unbind("scroll"), $("#waterfallLoading").text("\u6ca1\u6709\u66f4\u591a\u4e86").show(), $(t.settings.footerSelector).show())
                     },
                     dataType: "json"
                 })

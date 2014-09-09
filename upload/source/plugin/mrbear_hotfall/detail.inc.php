@@ -15,6 +15,13 @@ if (!defined('IN_DISCUZ')) {
 require_once DISCUZ_ROOT.'/source/function/function_post.php';
 //params init
 global $_G;
+$hot_config = $_G['cache']['plugin']['mrbear_hotfall'];
+$ruleType = $hot_config['rule'];
+$days = $hot_config['days'];
+
+$rule = switchRule($ruleType);
+$days = (intval($days))?intval($days):3;
+
 $limit = 20;
 $offset = 0;
 $current = Date('Y-m-d H:i:s');
@@ -37,38 +44,10 @@ if($limit == 0){
 	exit();
 }
 
-//$hottime = dintval(str_replace('-', '', $current));
-//if($hottime && checkdate(substr($hottime, 4, 2), substr($hottime, 6, 2), substr($hottime, 0, 4))) {
-//
-//	$calendartime = abs($hottime);
-//
-//} else {
-//	$calendartime = dgmdate(strtotime(dgmdate(TIMESTAMP, 'Y-m-d')) - 86400, 'Ymd');
-//
-//}
-//$calendartime = '20140612'; //TODO test
-//$caldata = C::t('forum_threadcalendar')->fetch_all_by_dateline($calendartime);
-//
-//if(empty($caldata)){
-//    echo json_encode($returnStruct);
-//    exit();
-//}
-//
-//$hotNum = $caldata['hotnum'];
-//$threadlist = array();
-//
-//$hottids = C::t('forum_threadhot')->fetch_all_tid_by_cid($caldata['cid']);
-//$threadlist = C::t('forum_thread')->fetch_all_by_tid($hottids);
-//
-//var_dump($caldata);
-//if(empty($threadlist)){
-//    echo json_encode($returnStruct);
-//    exit();
-//}
 
-$hotTime = strtotime($current) - 86400*2;
+$hotTime = strtotime($current) - 86400*$days;
 $hotNum = getHotNum($hotTime);
-$threadlist = C::t('forum_thread')->fetch_all_by_dateline($hotTime,$offset,$limit,'views','DESC');
+$threadlist = C::t('forum_thread')->fetch_all_by_dateline($hotTime,$offset,$limit,$rule,'DESC');
 
 foreach($threadlist as $itemThread){
     //authorInfo
@@ -149,13 +128,7 @@ foreach($threadlist as $itemThread){
         'image' => '',
         'is_replyable' => true,
         'channels' => array(
-//           0 => array(
-//               'url' => $_G['siteurl'].'plugin.php?id=mrbear_hotfall:main',
-//               'date_created' => '',
-//               'name' => '热点',//TODO CONST name value = \u70ed\u70b9
-//               'key' => 'hot',
-//               'articles_count' => $hotNum
-//            ),
+
         ),
         'channel_keys' => array('hot'),
         'preface' => '',
@@ -164,7 +137,7 @@ foreach($threadlist as $itemThread){
             'url' => $_G['siteurl'].'forum.php?mod=forumdisplay&fid='.$fid,
             'date_created' => '',
             'name' => $forumName,
-            'key' => 'earth', //TODO  key
+            'key' => 'earth',
             'articles_count' => '',
         ),
         'copyright' => 'owned_by_site',
@@ -179,7 +152,7 @@ foreach($threadlist as $itemThread){
         'date_published' => $postGMT,
         'replies_count' => $replies,
         'is_author_external' => false,
-        'recommends_count' => 0, //TODO
+        'recommends_count' => 0,
         'title_hide' => $title,
         'date_modified' => $postGMT,
         'url' => $_G['siteurl'].'forum.php?mod=viewthread&tid='.$tid,
@@ -239,4 +212,23 @@ function getTMessage($tid){
     $queryCon = 'SELECT message FROM '.DB::table('forum_post').' WHERE tid='.$tid;
     $postInfo = DB::fetch_all($queryCon);
     return $postInfo;
+}
+
+function switchRule($ruleType){
+    $ruleType = intval($ruleType);
+    $rule = '';
+    switch($ruleType){
+        case 1:
+            $rule = 'heats';
+            break;
+        case 2:
+            $rule = 'views';
+            break;
+        case 3:
+            $rule = 'replies';
+            break;
+        default:
+            break;
+    }
+    return $rule;
 }

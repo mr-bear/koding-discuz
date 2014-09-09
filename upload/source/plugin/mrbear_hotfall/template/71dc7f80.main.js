@@ -197,7 +197,7 @@
 //		});
 		var b = $(window),
 			w = $(document),
-			E = ' <div class="gotop-wrap">                            <a id="gotopBtn" href="javascript:void(0);" title="回到顶部">                                <span class="icon icon-totop"></span>                            </a>                        </div>';
+			E = ' <div class="gotop-wrap">                            <a id="gotopBtn" href="javascript:void(0);" title="\u56de\u5230\u9876\u90e8">                                <span class="icon icon-totop"></span>                            </a>                        </div>';
 		$(".container").append(E), $("#gotopBtn").click(function(e) {
 			e.preventDefault(), i(0)
 		}), b.scroll(function() {
